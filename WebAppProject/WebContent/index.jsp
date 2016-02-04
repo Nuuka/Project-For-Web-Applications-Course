@@ -12,7 +12,7 @@
 			    <table width="100%" style="padding:0px">  
 			    	<tr>
 			    		<td rowspan="2" width="75%"><h1 style="text-align:center">MiMoJo</h1></td>
-			    		<td style="width: 54px; ">User ID</td>
+			    		<td style="width: 54px; ">User Id</td>
 			    		<td>Password</td> 
 			    	</tr>
 			        <tr>  
