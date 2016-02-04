@@ -6,7 +6,7 @@
 <title>Login Application</title>  
 </head>  
 <body>  
-    <form action="LoginServlet" method="post">  
+    <form action="loginServlet" method="post">  
         <fieldset style="width: 300px">  
             <legend> Login to App </legend>  
             <table>  
