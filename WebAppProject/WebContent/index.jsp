@@ -16,7 +16,7 @@
 			    		<td>Password!</td> 
 			    	</tr>
 			        <tr>  
-			            <td><input type="email" name="username" placeholder="Email" required="required" /></td> 
+			            <td><input type="text" name="username" placeholder="Email" required="required" /></td> 
 			            <td><input type="password" name="userpass" placeholder="Password" required="required" /></td>   
 			            <td><input type="submit" value="Login" class="button" /></td> 
 			        </tr>  
