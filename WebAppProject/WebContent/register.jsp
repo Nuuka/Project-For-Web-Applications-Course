@@ -1,42 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>  
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
-		<title>Login Application</title>  
-		<link rel="stylesheet" type="text/css" href="main.css">
-	</head>  
-	<body>  
-		<div style="height:30%">&nbsp;</div>
-		<div class="header" style="height: 200px;width: 70%;margin-left: 20%;" >
-		    <form action="RegisterServlet" method="post"> 
-			    <table width="100%" style="padding:0px;height:100%">  
-			    	<tr>
-			    		<td width="50%"><h1 style="text-align:center">MiMoJo</h1></td>
-			    		<td>
-				    		<table>
-				    			<tr>
-				    				<td colspan="2" style="color:cyan">
-				    					Please enter a user ID and Password to create an account
-				    				</td>
-				    			</tr>
-				    			<tr>
-				    				<td align="right">User ID:</td>
-				    				<td><input type="text" name="username" placeholder="User ID" required="required" /></td>
-				    			</tr>
-				    			<tr>
-				    				<td align="right">Password:</td>
-				    				<td><input type="password" name="userpass" placeholder="Password" required="required" /></td>
-				    			</tr>
-				    		</table>
-			    		</td>
-			    	</tr>
-			    	<tr>
-			        	<td colspan="2" align="center"><input type="submit" value="Create Account" class="button" /></td> 
-			        </tr>
-			    </table> 
-		    </form> 
-	    </div>
-	</body>  
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
+	    <title>Login Application</title>  
+	    <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+    <script type="text/javascript">
+        function checkPass()
+            {
+               
+                var pass1 = document.getElementById('pass1');
+                var pass2 = document.getElementById('pass2');
+               
+                var message = document.getElementById('confirmMessage');
+               
+                var matchColor = "#66cc66";
+                var noMatchColor = "#ff6666";
+             
+                if(pass1.value == pass2.value){
+               
+                    pass2.style.backgroundColor = matchColor;
+                    message.style.color = matchColor;
+                    message.innerHTML = "Passwords Match!"
+                }else{
+                   
+                    pass2.style.backgroundColor = noMatchColor;
+                    message.style.color = noMatchColor;
+                    message.innerHTML = "Passwords Do Not Match!"
+                }
+            }  
+    </script>
+    <body>  
+    <div class="header ">          
+            <h1 style="text-align:center ">MiMoJo</h1>    
+    </div>
+        <div class="registerBlock" >
+            <div class="loginTitle">
+                <h3 style="line-height: 175px">Register</h3>
+            </div>
+            <form action="RegisterServlet" method="post"> 
+                <label for="userID" >User ID</label>
+                <input type="text" name="username"><br/>
+ 
+                <label for="password" style="margin-top: 1em">Password</label>
+                <input type="password" name="userpass" id="pass1"><br/><br/>
+ 
+                <label for="password2">Confirm Password</label>
+                <input type="password" name="ConfirmPassword" id="pass2" onkeyup="checkPass(); return false">
+                <span id="confirmMessage" class="confirmMessage" style="margin-left: 95px"></span><br/><br/>
+ 
+                <input type="submit" value="Create Account" style="margin-left: 150px">
+                <% if(session.getAttribute("createStatus") == "failed"){ 
+					out.println("<br /><span style=\"color:#e74c3c\">Account already in use!</span>");
+				}
+				 
+				%>
+            </form>
+        </div>
+    </body>  
 </html>  
