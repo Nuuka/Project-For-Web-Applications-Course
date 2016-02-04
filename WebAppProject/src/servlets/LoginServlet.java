@@ -30,12 +30,15 @@ public class LoginServlet extends HttpServlet{
         	session.setAttribute("name", n);  
   
         if(LoginDao.validate(n, p)){    
+        	session.setAttribute("loginStatus", "success");
             RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
             rd.forward(request,response);    
         }    
         else{    
             //out.print("<p style=\"color:red\">Sorry username or password error</p>");  
         	// Redirect to login page if invalid user and pass
+        	session.setAttribute("loginStatus", "failed");
+        	
             RequestDispatcher rd=request.getRequestDispatcher("login.jsp");    
             rd.forward(request,response);    
         }    

@@ -31,13 +31,13 @@ public class RegisterServlet extends HttpServlet{
         	session.setAttribute("name", n);  
 
         if(RegisterDao.validate(n, p)){    
-        	System.out.println("YESSSSSSSSS");
+        	//System.out.println("YESSSSSSSSS");
             RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
             rd.forward(request,response);    
         }    
         else{    
-        	System.out.println("NOOOOOOOOOOOO");
-        	out.print("<p style=\"color:red\">Sorry username or password error</p>");    
+        	//System.out.println("NOOOOOOOOOOOO");
+        	session.setAttribute("createStatus", "failed");  
             RequestDispatcher rd=request.getRequestDispatcher("register.jsp");    
             rd.include(request,response);  
         } 
