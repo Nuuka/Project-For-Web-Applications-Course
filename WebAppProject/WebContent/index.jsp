@@ -13,15 +13,54 @@
 			    	<tr>
 			    		<td rowspan="2" width="75%"><h1 style="text-align:center">MiMoJo</h1></td>
 			    		<td style="width: 54px; ">User ID</td>
-			    		<td>Password!</td> 
+			    		<td>Password</td> 
+			    		<td><a id="rbutton" href="register.jsp">Register</a></td>
 			    	</tr>
 			        <tr>  
-			            <td><input type="text" name="username" placeholder="Email" required="required" /></td> 
+			            <td><input type="text" name="username" placeholder="User ID" required="required" /></td> 
 			            <td><input type="password" name="userpass" placeholder="Password" required="required" /></td>   
 			            <td><input type="submit" value="Login" class="button" /></td> 
 			        </tr>  
 			    </table> 
 		    </form> 
 	    </div>
+	    <div id="left">
+		    <div class="updates">
+		    	<table>
+		    		<tr>
+		    			<td>(User) has added the node:</td>
+		    		</tr>
+		    		<tr style="font-size:9px">
+		    			<td>Blah blah blahasdjabsgvs vfbhjvjkdhasvd fhjkasdvasjhdvfashjdvas</td>
+		    		</tr>
+		    	</table>
+		    	<hr />
+		    </div>
+		    <div class="updates">
+		    	<table>
+		    		<tr>
+		    			<td>(User) has added the node:</td>
+		    		</tr>
+		    		<tr style="font-size:9px">
+		    			<td>Blah blah blahasdjabsgvs vfbhjvjkdhasvd fhjkasdvasjhdvfashjdvas</td>
+		    		</tr>
+		    	</table>
+		    	<hr />
+		    </div>
+		    <div class="updates">
+		    	<table>
+		    		<tr>
+		    			<td>(User) has added the node:</td>
+		    		</tr>
+		    		<tr style="font-size:9px">
+		    			<td>Blah blah blahasdjabsgvs vfbhjvjkdhasvd fhjkasdvasjhdvfashjdvas</td>
+		    		</tr>
+		    	</table>
+		    	<hr />
+		    </div>
+	    </div>
+		<div id="center"><a href="here.html"> click here to create node</a>
+		</div>
+		<div id="right">text</div>
 	</body>  
 </html>  
