@@ -7,10 +7,16 @@
         <servlet-name>login</servlet-name>  
         <servlet-class>servlets.LoginServlet</servlet-class>  
     </servlet>  
+    
     <servlet>  
         <servlet-name>register</servlet-name>  
         <servlet-class>servlets.RegisterServlet</servlet-class>  
-    </servlet>  
+    </servlet>
+    
+    <servlet>  
+        <servlet-name>newNode</servlet-name>  
+        <servlet-class>servlets.NewNodeServlet</servlet-class>  
+    </servlet> 
   
     <servlet-mapping>  
         <servlet-name>login</servlet-name>  
@@ -20,6 +26,11 @@
         <servlet-name>register</servlet-name>  
         <url-pattern>/RegisterServlet</url-pattern>  
     </servlet-mapping>  
+    <servlet-mapping>  
+        <servlet-name>newNode</servlet-name>  
+        <url-pattern>/newNodeServlet</url-pattern>  
+    </servlet-mapping>  
+  
   
     <welcome-file-list>  
         <welcome-file>index.jsp</welcome-file>  
