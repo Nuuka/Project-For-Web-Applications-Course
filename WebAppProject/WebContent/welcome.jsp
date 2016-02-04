@@ -12,7 +12,7 @@
         Helllooo,  
     <h3>Login successful!!!</h3>  
     <h4>  
-        Meow test test,  
+        Welcome,  
         <%=session.getAttribute("name")%></h4>  
 </body>  
 </html>  
