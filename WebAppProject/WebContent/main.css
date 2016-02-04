@@ -1,0 +1,37 @@
+* {
+    font-family: "Verdana", Times, serif;
+}
+
+html, body
+{
+    margin: 0px;
+}
+
+.header{
+	background-color: #9b59b6;
+	width: 100%;
+	color: #000000;
+	margin: 0px;
+	padding: 0px;
+	color: white;
+
+}
+
+.header table{
+	color:white;
+
+}
+
+.button {
+	box-shadow:inset 0px 34px 0px -15px #ffffff;
+	background-color:#f0f0f0;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:2px 20px;
+}
+
