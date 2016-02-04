@@ -13,7 +13,7 @@
 			    	<tr>
 			    		<td rowspan="2" width="75%"><h1 style="text-align:center">MiMoJo</h1></td>
 			    		<td style="width: 54px; ">User ID</td>
-			    		<td>Password!</td> 
+			    		<td>Password</td> 
 			    	</tr>
 			        <tr>  
 			            <td><input type="email" name="username" placeholder="Email" required="required" /></td> 
