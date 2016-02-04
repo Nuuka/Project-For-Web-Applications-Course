@@ -8,7 +8,7 @@
 <body>  
     <form action="loginServlet" method="post">  
         <fieldset style="width: 300px">  
-            <legend> Login to App </legend>  
+            <legend> Login to Meow </legend>  
             <table>  
                 <tr>  
                     <td>User ID</td>  
