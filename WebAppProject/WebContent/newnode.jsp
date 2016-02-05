@@ -28,7 +28,6 @@
                             <textarea id="msg" name="choice2" style="resize:both"rows="4" cols="35"></textarea>
                         </td>
                     </tr>
-
                 </table>
                 <input type="submit" value="Submit" style="text-align: center">
             </form>

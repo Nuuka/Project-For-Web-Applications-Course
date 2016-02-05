@@ -23,6 +23,7 @@ public class NewNodeDao {
             Class.forName(driver).newInstance();  
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
+            
             pst = conn.prepareStatement("INSERT INTO `form`.`nodes` (`text`, `choice1_text`, `choice2_text`) VALUES (?, ?, ?)");
 
             pst.setString(1, text);  

@@ -30,6 +30,7 @@ public class NewNodeServlet extends HttpServlet{
         if(session!=null)  
         	session.setAttribute("postText", pText);  
   
+        
         if(NewNodeDao.validate(pText, choice1, choice2)){    
             RequestDispatcher rd=request.getRequestDispatcher("newnode.jsp");    
             rd.forward(request,response);    
