@@ -59,7 +59,7 @@
 		    	<hr />
 		    </div>
 	    </div>
-		<div id="center"><a href="here.html"> click here to create node</a>
+		<div id="center"><a href="newnode.jsp"> click here to create node</a>
 		</div>
 		<div id="right">text</div>
 	</body>  

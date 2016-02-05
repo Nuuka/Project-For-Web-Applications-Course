@@ -1,23 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  
-    pageEncoding="ISO-8859-1"%>  
-<html>  
-	<head>  
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
-		<title>New Node Submission</title>  
-		<link rel="stylesheet" type="text/css" href="main.css">
-	</head>  
-	<body>  
-		<div class="header">
-		    <form action="newNodeServlet" method="post"> 
-			    <table width="100%" style="padding:0px">  
-			    	<tr>
-			    		<td><input type="text" name="postText"  required="required" style="width: 744px; height: 123px"/> 
-			            <td><input type="text" name="choice1"  required="required" style="width: 272px; height: 76px"/></td> 
-			            <td><input type="text" name="choice2" required="required" style="height: 77px; width: 242px"/></td>   
-			            <td><input type="submit" value="Submit" class="button" /></td> 
-			        </tr>  
-			    </table> 
-		    </form> 
-	    </div>
-	</body>  
-</html>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
+        <title>New Node Submission</title>  
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+    
+    <body>  
+    <div class="header ">          
+            <h1 style="text-align:center ">MiMoJo</h1>    
+    </div>
+        <div class="postBlock" >
+            <div class="loginTitle">
+                <h3 style="line-height: 175px">Post Story</h3>
+            </div>
+            <form action="newNodeServlet" method="post"> 
+                <label for="msg" >Message:</label><br/>
+                <textarea id="msg" name="postText" style="resize:both" rows="8" cols="72"></textarea><br/>
+                <table style="margin-left: 50px">
+                    <tr>
+                        <td>
+                            <label for="msg">Message:</label><br/>
+                            <textarea id="msg" name="choice1" style="resize:both"rows="4" cols="35"></textarea>
+                        </td>
+                        <td>
+                            <label for="msg">Message:</label><br/>
+                            <textarea id="msg" name="choice2" style="resize:both"rows="4" cols="35"></textarea>
+                        </td>
+                    </tr>
+
+                </table>
+                <input type="submit" value="Submit" style="text-align: center">
+            </form>
+        </div>
+    </body>  
+</html>
