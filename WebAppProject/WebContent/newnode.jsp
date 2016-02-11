@@ -1,4 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
@@ -14,10 +13,10 @@
             <div class="loginTitle">
                 <h3 style="line-height: 175px">Post Story</h3>
             </div>
-            <form action="newNodeServlet" method="post"> 
+            <form action="newNodeServlet" method="post" style="text-align: center; width: auto ! important;"> 
                 <label for="msg" >Message:</label><br/>
                 <textarea id="msg" name="postText" style="resize:both" rows="8" cols="72"></textarea><br/>
-                <table style="margin-left: 50px">
+                <table style="margin-left: 45px">
                     <tr>
                         <td>
                             <label for="msg">Message:</label><br/>

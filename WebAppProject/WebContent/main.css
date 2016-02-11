@@ -1,41 +1,41 @@
 * {
     font-family: "Verdana", Times, serif;
 }
-
+ 
 html, body
 {
     margin: 0px;
 }
-
+ 
 .header{
-	background-color: #4b307b;
-	width: 100%;
-	color: #000000;
-	margin: 0px;
-	padding: 0px;
-	color: white;
-	height: 70px;
-
+    background-color: #4b307b;
+    width: 100%;
+    color: #000000;
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    height: 70px;
+ 
 }
-
+ 
 .header table{
-	color:white;
-
+    color:white;
+ 
 }
-
+ 
 .button {
-	box-shadow:inset 0px 34px 0px -15px #ffffff;
-	background-color:#f0f0f0;
-	border:1px solid #000000;
-	display:inline-block;
-	cursor:pointer;
-	color:#000000;
-	font-family:Arial;
-	font-size:14px;
-	font-weight:bold;
-	padding:2px 20px;
+    box-shadow:inset 0px 34px 0px -15px #ffffff;
+    background-color:#f0f0f0;
+    border:1px solid #000000;
+    display:inline-block;
+    cursor:pointer;
+    color:#000000;
+    font-family:Arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:2px 20px;
 }
-
+ 
 #rbutton {
   font: bold 11px Arial;
   text-decoration: none;
@@ -47,14 +47,14 @@ html, body
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;
 }
-
+ 
 .updates table{
-	font-size: 11pt;
-	text-align: left;
-	text-align: top;
-	vertical-align: text-top;
+    font-size: 11pt;
+    text-align: left;
+    text-align: top;
+    vertical-align: text-top;
 }
-
+ 
 .loginBlock{
     display:block;
     margin-left:auto;
@@ -72,13 +72,13 @@ html, body
     text-align: center;
     color: #ffffff;
 }
-
+ 
 hr{
-	color: #f00;
-	background-color: #7f8c8d;
-	height: 2px;
+    color: #f00;
+    background-color: #7f8c8d;
+    height: 2px;
 }
-
+ 
 #left {
     width:220px;
     background-color: #bdc3c7;
@@ -102,8 +102,8 @@ hr{
     height:  calc(100% - 70px);
     float: left;
 }
-
-
+ 
+ 
 .registerBlock{
     display:block;
     margin-left:auto;
@@ -115,8 +115,23 @@ hr{
     color: #ffffff;
     border-radius:5px;
 }
+.postBlock{
+	display:block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: calc( 20vh - 0px );
+    width: 700px;
+    height: 600px;
+    background-color: #4b307b;
+    color: #ffffff;
+    border-radius:5px;
+}
 .submit{
     text-align: center;
+}
+.storyForm{
+	margin: 0 auto;
+	width: 350px;
 }
 form {
     margin: 0 auto;
