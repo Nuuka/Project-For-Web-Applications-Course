@@ -31,7 +31,8 @@ public class LoginServlet extends HttpServlet{
   
         if(LoginDao.validate(n, p)){    
         	session.setAttribute("loginStatus", "success");
-            RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
+        	session.setAttribute("loginAccount", n);
+            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
             rd.forward(request,response);    
         }    
         else{    

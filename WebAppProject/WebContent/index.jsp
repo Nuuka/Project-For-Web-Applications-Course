@@ -12,14 +12,12 @@
 			    <table width="100%" style="padding:0px">  
 			    	<tr>
 			    		<td rowspan="2" width="75%"><h1 style="text-align:center">MiMoJo</h1></td>
-			    		<td style="width: 54px; ">User ID</td>
-			    		<td>Password</td> 
-			    		<td><a id="rbutton" href="register.jsp">Register</a></td>
-			    	</tr>
-			        <tr>  
-			            <td><input type="text" name="username" placeholder="User ID" required="required" /></td> 
-			            <td><input type="password" name="userpass" placeholder="Password" required="required" /></td>   
-			            <td><input type="submit" value="Login" class="button" /></td> 
+			            <%
+			            	if(session.getAttribute("loginStatus") == "success"){ %>
+								<%@include file="header/loggedIn.jsp" %>
+							<%}else{%> 
+								<%@include file="header/notLoggedIn.jsp" %>
+							<%}%>
 			        </tr>  
 			    </table> 
 		    </form> 
