@@ -62,7 +62,7 @@ html, body
     margin-top: calc( 20vh - 0px );
     width: 350px;
     height: 500px;
-    background-color: #4b307b;
+    background-color: #11464A;
     color: #ffffff;
     border-radius:5px;
    
@@ -113,7 +113,7 @@ hr{
     margin-top: calc( 20vh - 0px );
     width: 500px;
     height: 600px;
-    background-color: #4b307b;
+    background-color: #11464A;
     color: #ffffff;
     border-radius:5px;
 }
@@ -125,7 +125,7 @@ hr{
     margin-top: calc( 20vh - 0px );
     width: 700px;
     height: 600px;
-    background-color: #4b307b;
+    background-color: #11464A;
     color: #ffffff;
     border-radius:5px;
 }
@@ -156,7 +156,7 @@ label {
     margin-top: calc( 10vh - 0px );
     width: 1400px;
     height: 600px;
-    background-color: #4b307b;
+    background-color: #11464A;
     color: #ffffff;
     border-radius:5px;
 }
