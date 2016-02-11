@@ -59,8 +59,10 @@
 		    	<hr />
 		    </div>
 	    </div>
-		<div id="center"><a href="newnode.jsp"> click here to create node</a>
+		<div id="center">
+			<a href="newnode.jsp"> click here to create node</a>
+			<a href="http://localhost:8080/WebAppProject/newNodeServlet?nodeid=1">click here for node 1</a>
 		</div>
 		<div id="right">text</div>
 	</body>  
-</html>  
+</html>

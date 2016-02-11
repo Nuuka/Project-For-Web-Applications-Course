@@ -42,5 +42,20 @@ public class NewNodeServlet extends HttpServlet{
   
         out.close();    
     }
-    
+    public void doGet(HttpServletRequest request, HttpServletResponse response)    
+            throws ServletException, IOException {
+    	
+    	String node[];
+    	String nodeid = request.getParameter("nodeid");
+    	
+    	
+    	node = NewNodeDao.getNode(Integer.parseInt(nodeid));
+    	request.setAttribute("text", node[0]);
+    	request.setAttribute("choice1", node[1]);
+    	request.setAttribute("choice2", node[2]);
+    	
+    	//TODO: Create a if to check if the node came back null if it did forward to an error page.
+    	RequestDispatcher rd=request.getRequestDispatcher("nodeview.jsp");    
+        rd.forward(request,response);  
+    }
 }   

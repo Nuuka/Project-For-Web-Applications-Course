@@ -8,7 +8,7 @@ html, body
 }
  
 .header{
-    background-color: #4b307b;
+    background-color: #11464A;
     width: 100%;
     color: #000000;
     margin: 0px;
@@ -20,7 +20,6 @@ html, body
  
 .header table{
     color:white;
- 
 }
  
 .button {
@@ -47,7 +46,7 @@ html, body
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;
 }
- 
+ /* News updates for the home page */
 .updates table{
     font-size: 11pt;
     text-align: left;
@@ -55,6 +54,7 @@ html, body
     vertical-align: text-top;
 }
  
+/*The Main from for the login to hold the contents */
 .loginBlock{
     display:block;
     margin-left:auto;
@@ -67,7 +67,7 @@ html, body
     border-radius:5px;
    
 }
- 
+ /*The title of the login design */
 .loginTitle{
     text-align: center;
     color: #ffffff;
@@ -78,7 +78,7 @@ hr{
     background-color: #7f8c8d;
     height: 2px;
 }
- 
+/*The center left side of the home page */ 
 #left {
     width:220px;
     background-color: #bdc3c7;
@@ -86,6 +86,7 @@ hr{
     float: left;
     margin: 0px;
 }
+/*The center of the home page */
 #center {
     margin: 0px;
     margin-left: 5px;
@@ -95,6 +96,7 @@ hr{
     height:  calc(100% - 70px);
     float: left;
 }
+/*The right side of the home page */
 #right {
     margin: 0px;
     width: 220px;
@@ -103,7 +105,7 @@ hr{
     float: left;
 }
  
- 
+ /*Main frame for the register page*/
 .registerBlock{
     display:block;
     margin-left:auto;
@@ -115,6 +117,7 @@ hr{
     color: #ffffff;
     border-radius:5px;
 }
+/*Main frame for the post page*/
 .postBlock{
 	display:block;
     margin-left:auto;
@@ -129,16 +132,31 @@ hr{
 .submit{
     text-align: center;
 }
-.storyForm{
+/*register form centering */
+#registerForm{
 	margin: 0 auto;
-	width: 350px;
-}
-form {
-    margin: 0 auto;
     width: 350px;
 }
+/*Post form cetering*/
+#postStoryForm{
+	text-align: center;
+	width: auto;
+}
+/*Inline all labels with each other*/
 label {
     display: inline-block;
     width: 90px;
     text-align: right;
+}
+
+.displayBlock{
+	display:block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: calc( 10vh - 0px );
+    width: 1400px;
+    height: 600px;
+    background-color: #4b307b;
+    color: #ffffff;
+    border-radius:5px;
 }
