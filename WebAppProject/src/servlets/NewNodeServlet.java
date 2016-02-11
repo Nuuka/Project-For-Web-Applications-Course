@@ -25,13 +25,16 @@ public class NewNodeServlet extends HttpServlet{
         String pText = request.getParameter("postText");    
         String choice1 = request.getParameter("choice1");
         String choice2 = request.getParameter("choice2");
-          
+        String node_id = request.getParameter("node_id");
+        String choice1_id = request.getParameter("choice1_id");
+        String choice2_id = request.getParameter("choice2_id");
+        
         HttpSession session = request.getSession(false);  
         if(session!=null)  
         	session.setAttribute("postText", pText);  
   
         
-        if(NewNodeDao.validate(pText, choice1, choice2)){    
+        if(NewNodeDao.validate(pText, choice1, choice2, node_id, choice1_id, choice2_id)){    
             RequestDispatcher rd=request.getRequestDispatcher("newnode.jsp");    
             rd.forward(request,response);    
         }    
@@ -53,6 +56,8 @@ public class NewNodeServlet extends HttpServlet{
     	request.setAttribute("text", node[0]);
     	request.setAttribute("choice1", node[1]);
     	request.setAttribute("choice2", node[2]);
+    	request.setAttribute("choice1_id", node[3]);
+    	request.setAttribute("choice2_id", node[4]);
     	
     	//TODO: Create a if to check if the node came back null if it did forward to an error page.
     	RequestDispatcher rd=request.getRequestDispatcher("nodeview.jsp");    

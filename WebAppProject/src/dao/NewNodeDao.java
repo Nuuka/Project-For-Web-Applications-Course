@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;  
   
 public class NewNodeDao {  
-    public static boolean validate(String text, String choice1, String choice2) {          
+    public static boolean validate(String text, String choice1, String choice2, String node_id, String choice1_id, String choice2_id) {          
         boolean status = true;  
         Connection conn = null;  
         PreparedStatement pst = null;  
@@ -24,11 +24,13 @@ public class NewNodeDao {
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
             
-            pst = conn.prepareStatement("INSERT INTO `form`.`nodes` (`text`, `choice1_text`, `choice2_text`) VALUES (?, ?, ?)");
-
-            pst.setString(1, text);  
-            pst.setString(2, choice1);
-            pst.setString(3, choice2);  
+            pst = conn.prepareStatement("INSERT INTO form.nodes (id, text, choice1_text, choice2_text, choice1_id, choice2_id) VALUES (?, ?, ?, ?, ?, ?)");
+            pst.setInt(1, Integer.parseInt(node_id));
+            pst.setString(2, text);  
+            pst.setString(3, choice1);
+            pst.setString(4, choice2);
+            pst.setInt(5, Integer.parseInt(choice1_id));
+            pst.setInt(6, Integer.parseInt(choice2_id));
   
             pst.execute();
   
@@ -63,7 +65,7 @@ public class NewNodeDao {
     	Connection conn = null;  
         PreparedStatement pst = null;  
         ResultSet rs = null; 
-        String[] node = new String[3];
+        String[] node = new String[5];
   
         String url = "jdbc:mysql://localhost:3306/";  
         String dbName = "form";  
@@ -76,15 +78,17 @@ public class NewNodeDao {
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
             
-            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text FROM form.nodes WHERE id = ?");
-            pst.setString(1, ""+nodeid);
-            //pst.setInt(1, nodeid);
+            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id FROM form.nodes WHERE id = ?");
+            //pst.setString(1, ""+nodeid);
+            pst.setInt(1, nodeid);
   
             rs = pst.executeQuery();
             rs.next();
             node[0] = rs.getString(1);
             node[1] = rs.getString(2);
             node[2] = rs.getString(3);
+            node[3] = rs.getString(4);
+            node[4] = rs.getString(5);
             //node[1] = rs.getString("choice1_text");
   
         } catch (Exception e) {  

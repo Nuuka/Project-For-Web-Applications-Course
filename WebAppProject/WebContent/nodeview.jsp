@@ -13,24 +13,26 @@
             <h3 style="line-height: 30px">Play</h3>
         </div>
         <form id="postStoryForm">
-            <table  width="800px" height="250" style="margin-left: 300px; text-align:center">
+            <table  style=" table-layout: fixed; width: 800px; height:250px; margin-left: 300px; text-align:center">
                 <tr>
-                    <td style="color: #ffffff; vertical-align:top ">
+                    <td style="width: 790px;  word-wrap:break-word; color: #ffffff; vertical-align:top ">
                       	${text}
                     </td>
                 </tr>
             </table>
-            <table width="800px" style="margin-left: 300px; text-align: center; margin-top: 50px;">
+            <table style=" table-layout: fixed; width:800px; height:50px; margin-left: 300px; text-align: center; margin-top: 50px;">
                 <tr>
-                    <td>
-                        <a href="blah.com" style="color:white; text-decoration: none;">
+                    <td style="width:383px">
+                        <a href="http://localhost:8080/WebAppProject/newNodeServlet?nodeid=${choice1_id}" style="color:white; word-wrap:break-word; text-decoration: none;">
                             <div class="choice1 ">
                        			${choice1}
                             </div>
                         </a>
-                    </td>  
-                   <td>
-                        <a href="blah.com" style="color:white; text-decoration: none;">
+                    </td>
+                    <td style="width:14px">
+	                </td>  
+                   <td style="width:383px">
+                        <a href="http://localhost:8080/WebAppProject/newNodeServlet?nodeid=${choice2_id}" style="color:white; word-wrap:break-word; text-decoration: none;">
                             <div class="choice2">
                                ${choice2}
                             </div>
