@@ -11,14 +11,17 @@
 				 
 		%>
     </head>
-    <body>  
+    <body> 
+    <!--very basic login page with two fields for a username and password aswell as a login button--> 
     <div class="header ">          
             <h1 style="text-align:center ">MiMoJo</h1>    
     </div>
+    	<!-- Main frame to hold contents-->
         <div class="loginBlock" >
             <div class="loginTitle">
                 <h3 style="line-height: 175px">Login</h3>
             </div>
+            <!--Form for login, user and password-->
             <form style="margin-left:75px" action="loginServlet" method="post">
             	
                 User ID<br/><input type="text" name="username" required="required" ><br/>

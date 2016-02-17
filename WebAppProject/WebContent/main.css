@@ -137,12 +137,12 @@ hr{
 	margin: 0 auto;
     width: 350px;
 }
-/*Post form cetering*/
+/*Post form centering*/
 #postStoryForm{
 	text-align: center;
 	width: auto;
 }
-/*Inline all labels with each other*/
+/*In-line all labels with each other*/
 label {
     display: inline-block;
     width: 90px;
