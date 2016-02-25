@@ -12,8 +12,7 @@
 			    <table width="100%" style="padding:0px">  
 			    	<tr>
 			    		<td rowspan="2" width="75%"><h1 style="text-align:center">MiMoJo</h1></td>
-			            <%
-			            	if(session.getAttribute("loginStatus") == "success"){ %>
+				            <%if(session.getAttribute("loginState") == "1"){ %>
 								<%@include file="header/loggedIn.jsp" %>
 							<%}else{%> 
 								<%@include file="header/notLoggedIn.jsp" %>

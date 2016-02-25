@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ 
 <html>
-	<head>
-	    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
-	    <title>Login Application</title>  
-	    <link rel="stylesheet" type="text/css" href="main.css">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
+        <title>Login Application</title>  
+        <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     <script type="text/javascript">
         function checkPass()
             {
-        		//gets the id from the first password and the second password
-		   		//and stores them into variables
+                //gets the id from the first password and the second password
+                //and stores them into variables
                 var pass1 = document.getElementById('pass1');
                 var pass2 = document.getElementById('pass2');
                 //grabs the id of tconfirm message
@@ -18,8 +19,8 @@
                 //storing the matched and non-matched password colors
                 var matchColor = "#66cc66";
                 var noMatchColor = "#ff6666";
-              	//if the passwords match the background color chnages to green
-			    //if they don't match it will turn red
+                //if the passwords match the background color chnages to green
+                //if they don't match it will turn red
                 if(pass1.value == pass2.value){
                
                     pass2.style.backgroundColor = matchColor;
@@ -31,12 +32,12 @@
                     message.style.color = noMatchColor;
                     message.innerHTML = "Passwords Do Not Match!"
                 }
-            } //end script 
+            } //end script
     </script>
-    <body> 
-    <!--Basic register form only asking for username and password--> 
-    <div class="header ">          
-            <h1 style="text-align:center ">MiMoJo</h1>    
+    <body>
+    <!--Basic register form only asking for username and password-->
+    <div class="header">          
+            <a href="index.jsp" style="text-decoration:none; color:white"><h1 style="text-align:center ">MiMoJo</h1></a>  
     </div>
         <!--Main frame-->
         <div class="registerBlock" >
@@ -44,7 +45,16 @@
                 <h3 style="line-height: 175px">Register</h3>
             </div>
             <!--Form for user to input their username and password-->
-            <form action="RegisterServlet" method="post"> 
+            <form action="RegisterServlet" method="post" style="margin-left:70px">
+                <label for="userID" >First Name</label>
+                <input type="text" name="firstName"><br/><br/>
+ 
+                <label for="userID" >Last Name</label>
+                <input type="text" name="lastName"><br/><br/>
+ 
+                <label for="userID" >Email</label>
+                <input type="text" name="email"><br/><br/>
+ 
                 <label for="userID" >User ID</label>
                 <input type="text" name="username"><br/>
  
@@ -57,12 +67,13 @@
                 <span id="confirmMessage" class="confirmMessage" style="margin-left: 95px"></span><br/><br/>
  
                 <input type="submit" value="Create Account" style="margin-left: 150px">
-                <% if(session.getAttribute("createStatus") == "failed"){ 
-					out.println("<br /><span style=\"color:#e74c3c\">Account already in use!</span>");
-				}
-				 
-				%>
+                <% if(session.getAttribute("createStatus") == "failed"){
+                    out.println("<br /><span style=\"color:#e74c3c\">Account already in use!</span>");
+                }
+                 
+                %>
+               
             </form>
         </div>
     </body>  
-</html>  
+</html>

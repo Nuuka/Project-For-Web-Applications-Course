@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;  
   
 public class RegisterDao {  
-    public static boolean validate(String name, String pass) {          
+    public static boolean createAccount(String name, String pass, String firstName, String lastName, String email) {          
         boolean status = true;  
         Connection conn = null;  
         PreparedStatement pst = null;  
@@ -31,11 +31,16 @@ public class RegisterDao {
             status = !rs.next(); 
 
             if(status){
-	            pst = conn.prepareStatement("INSERT INTO `form`.`login` (`user`, `password`) VALUES (?, ?)"); 
+            	pst = conn.prepareStatement("INSERT INTO `form`.`login` (`user`, `password`,`firstName`,`lastName`,`email`,`accountType`) VALUES (?, ?, ?, ?, ?, \"basic\")"); 
 	
 	            pst.setString(1, name);  
-	            pst.setString(2, pass);  
-	  
+	            pst.setString(2, pass);
+	            pst.setString(3, firstName);  
+	            pst.setString(4, lastName);  
+	            pst.setString(5, email);  
+	            //pst.setString(6, "basic");
+ 	           //pst = conn.prepareStatement("INSERT INTO `form`.`login` (`user`, `password`,`firstName`,`lastName`,`email`,`accountType`) VALUES (test3, test3, test3, test3, test3, test3)"); 
+
 	            pst.execute();
 	            //rs = pst.executeQuery();  
 	            //status = rs.next(); 

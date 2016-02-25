@@ -22,16 +22,19 @@ public class RegisterServlet extends HttpServlet{
         response.setContentType("text/html");    
         PrintWriter out = response.getWriter();    
           
-        String n=request.getParameter("username");    
-        String p=request.getParameter("userpass");   
+        String username =request.getParameter("username");    
+        String password =request.getParameter("userpass");  
+        String firstName=request.getParameter("firstName");    
+        String lastName=request.getParameter("lastName"); 
+        String email=request.getParameter("email");
           
         HttpSession session = request.getSession(false);  
         if(session!=null)  
-        	session.setAttribute("name", n);  
+        	session.setAttribute("name", username);  
 
-        if(RegisterDao.validate(n, p)){    
+        if(RegisterDao.createAccount(username, password, firstName, lastName, email)){    
         	//System.out.println("YESSSSSSSSS");
-            RequestDispatcher rd=request.getRequestDispatcher("welcome.jsp");    
+            RequestDispatcher rd=request.getRequestDispatcher("login.jsp");    
             rd.forward(request,response);    
         }    
         else{    
