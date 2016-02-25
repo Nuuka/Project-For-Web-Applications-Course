@@ -11,24 +11,36 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.LoginDao;   
-  
+/**
+ * The servlet used for login requests.
+ * 
+ * @author Joey MacLean
+ * @version 1.0
+ */
 public class LoginServlet extends HttpServlet{  
   
     private static final long serialVersionUID = 1L;  
-  
+    
+    /**
+	 * This function is called if a post request is sent to the servlet
+	 * 
+	 * @version 1.0
+	 */
     public void doPost(HttpServletRequest request, HttpServletResponse response)    
             throws ServletException, IOException {    
   
         response.setContentType("text/html");    
         PrintWriter out = response.getWriter();    
-          
+         
+        //Grabs the username and password for the request
         String n=request.getParameter("username");    
         String p=request.getParameter("userpass");   
           
         HttpSession session = request.getSession(false);  
         if(session!=null)  
         	session.setAttribute("name", n);  
-  
+        
+        //If the validation is successful redirects to index, otherwise redirects to the same page letting the user know it was unsuccessful 
         if(LoginDao.validate(n, p)){    //success
         	session.setAttribute("loginState", "1");
         	session.setAttribute("loginAccount", n);
