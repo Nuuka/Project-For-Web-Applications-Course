@@ -43,7 +43,7 @@ public class ViewNodeServlet extends HttpServlet{
     	request.setAttribute("choice2_id", node[4]);
     	
     	HttpSession session = request.getSession(false);  
-         if(session!=null)  
+        if(session!=null)  
         	 session.setAttribute("node_id", request.getParameter("nodeid"));
     	
     	//TODO: Create a if to check if the node came back null if it did forward to an error page.
