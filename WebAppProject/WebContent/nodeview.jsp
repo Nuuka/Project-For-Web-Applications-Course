@@ -23,16 +23,17 @@
             <table style=" table-layout: fixed; width:800px; height:50px; margin-left: 300px; text-align: center; margin-top: 50px;">
                 <tr>
                     <td style="width:383px">
-                        <a href="http://localhost:8080/WebAppProject/newNodeServlet?nodeid=${choice1_id}" style="color:white; word-wrap:break-word; text-decoration: none;">
-                            <div class="choice1 ">
+                        <a href="http://localhost:8080/WebAppProject/ViewNodeServlet?nodeid=${choice1_id}" style="color:white; word-wrap:break-word; text-decoration: none;">
+                            <div class="choice1">
                        			${choice1}
                             </div>
                         </a>
+                        <a class="button" href="http://localhost:8080/WebAppProject/newNodeServlet?nodeChoice=1"> Create Node</a>
                     </td>
                     <td style="width:14px">
 	                </td>  
                    <td style="width:383px">
-                        <a href="http://localhost:8080/WebAppProject/newNodeServlet?nodeid=${choice2_id}" style="color:white; word-wrap:break-word; text-decoration: none;">
+                        <a href="http://localhost:8080/WebAppProject/ViewNodeServlet?nodeid=${choice2_id}" style="color:white; word-wrap:break-word; text-decoration: none;">
                             <div class="choice2">
                                ${choice2}
                             </div>

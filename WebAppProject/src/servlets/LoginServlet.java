@@ -41,9 +41,11 @@ public class LoginServlet extends HttpServlet{
         	session.setAttribute("name", n);  
         
         //If the validation is successful redirects to index, otherwise redirects to the same page letting the user know it was unsuccessful 
-        if(LoginDao.validate(n, p)){    //success
+        int id = LoginDao.validate(n, p);
+        if(id != 0){    //success
         	session.setAttribute("loginState", "1");
         	session.setAttribute("loginAccount", n);
+        	session.setAttribute("userid",id );
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
             rd.forward(request,response);    
         }    

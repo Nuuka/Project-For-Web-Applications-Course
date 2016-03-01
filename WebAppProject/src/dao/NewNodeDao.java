@@ -24,7 +24,7 @@ public class NewNodeDao {
 	 * @param choice2_id The id of the node connecting to choice2, this was for debugging purposes only and will be removed later
 	 * @return True if the function was successful, otherwise false
 	 */
-    public static boolean validate(String text, String choice1, String choice2, String node_id, String choice1_id, String choice2_id) {          
+    public static boolean validate(String text, String choice1, String choice2, int node_id, int user_id, int nodeChoice) {          
         boolean status = true;  
         Connection conn = null;  
         PreparedStatement pst = null;  
@@ -42,15 +42,24 @@ public class NewNodeDao {
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
             
-            pst = conn.prepareStatement("INSERT INTO form.nodes (id, text, choice1_text, choice2_text, choice1_id, choice2_id) VALUES (?, ?, ?, ?, ?, ?)");
-            pst.setInt(1, Integer.parseInt(node_id));
-            pst.setString(2, text);  
-            pst.setString(3, choice1);
-            pst.setString(4, choice2);
-            pst.setInt(5, Integer.parseInt(choice1_id));
-            pst.setInt(6, Integer.parseInt(choice2_id));
+            pst = conn.prepareStatement("INSERT INTO form.ct_nodes (text, choice1_text, choice2_text, root_id, user_id) VALUES (?, ?, ?, ?, ?)");
+            pst.setString(1, text);  
+            pst.setString(2, choice1);
+            pst.setString(3, choice2);
+            pst.setInt(4, node_id);
+            pst.setInt(5, user_id);
   
             pst.execute();
+            
+            if(nodeChoice == 1){
+            	PreparedStatement pst2 = conn.prepareStatement("UPDATE form.ct_nodes parent INNER JOIN form.ct_nodes child ON parent.id = child.root_id SET parent.choice1_id = child.id WHERE parent.id = ?");
+            	pst2.setInt(1, node_id);
+            	pst2.execute();
+            }else if (nodeChoice == 2){
+            	PreparedStatement pst2 = conn.prepareStatement("UPDATE form.ct_nodes parent INNER JOIN form.ct_nodes child ON parent.id = child.root_id SET parent.choice2_id = child.id WHERE parent.id = ?");
+                pst2.setInt(1, node_id);
+                pst2.execute();
+            }
   
         } catch (Exception e) {  
             System.out.println(e);  
@@ -103,7 +112,7 @@ public class NewNodeDao {
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
             
-            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id FROM form.nodes WHERE id = ?");
+            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id FROM form.ct_nodes WHERE id = ?");
             pst.setInt(1, nodeid);
   
             rs = pst.executeQuery();
