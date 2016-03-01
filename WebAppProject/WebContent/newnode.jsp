@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
@@ -7,7 +6,7 @@
     </head>
     
     <body>  
-    <!--Basic user form to add their parts of the story aswell as their two choices-->
+    <!--Basic user form to add their parts of the story as well as their two choices-->
     <div class="header ">          
             <h1 style="text-align:center ">MiMoJo</h1>    
     </div>
@@ -19,7 +18,7 @@
         <!--Form with option to post the story and the users 2 choices (overide width to default to center the textarea)-->
          <form action="newNodeServlet" method="post"  id="postStoryForm"> 
 
-            node currently editing: <input type="text" name="node_id"><br/>
+           
             
             <label for="msg"  >Story:</label><br/>
             <!--Main text area for the users Story-->
@@ -31,13 +30,13 @@
                         <label  style="color:#ffffff" for="msg">Choice 1:</label><br/>
                         <textarea name="choice1" id="msg" style="resize:both"rows="4" cols="35"></textarea>
                         <!--temp html-->
-                        id: <input type="text" name="choice1_id">
+                        
                     </td>
                     <td style="color: #ffffff">
                         <label style="color:#ffffff" for="msg">Choice 2:</label><br/>
                         <textarea name="choice2" id="msg" style="resize:both"rows="4" cols="34"></textarea>
                         <!--temp html-->
-                        id: <input type="text" name="choice2_id">
+                        
                     </td>
                 </tr>
 
