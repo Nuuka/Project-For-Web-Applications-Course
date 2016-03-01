@@ -7,9 +7,7 @@
     
     <body>  
     <!--Basic user form to add their parts of the story as well as their two choices-->
-    <div class="header ">          
-            <h1 style="text-align:center ">MiMoJo</h1>    
-    </div>
+    <%@include file="header/header.jsp" %>
         <!--Main frame for the contents-->
     <div class="postBlock" >
         <div class="loginTitle">

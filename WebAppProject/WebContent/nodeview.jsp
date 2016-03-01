@@ -6,49 +6,42 @@
         <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     <body>  
-    <div class="header ">          
-            <h1 style="text-align:center ">MiMoJo</h1>    
-    </div>
+    <%@include file="header/header.jsp" %>
     <div class="displayBlock" >
         <div class="loginTitle">
-            <h3 style="line-height: 30px">Play</h3>
+            <h3 style="line-height: 30px">Here's what this node says...</h3>
         </div>
         <form id="postStoryForm">
-            <table  style=" table-layout: fixed; width: 800px; height:250px; margin-left: 300px; text-align:center">
+            <table class="nodeViewTextTable" style="height:45%;">
                 <tr>
-                    <td style="width: 790px;  word-wrap:break-word; color: #ffffff; vertical-align:top ">
+                    <td style="word-wrap:break-word; color: #ffffff; vertical-align:top ">
                       	${text}
                     </td>
                 </tr>
             </table>
-            <table style=" table-layout: fixed; width:800px; height:50px; margin-left: 300px; text-align: center; margin-top: 50px;">
+            <table class="nodeViewTextTable" style="margin-top:50px; height:30%">
                 <tr>
-                    <td style="width:383px">
-                        <a href="http://localhost:8080/WebAppProject/ViewNodeServlet?nodeid=${choice1_id}" style="color:white; word-wrap:break-word; text-decoration: none;">
-                            <div class="choice1">
-                       			${choice1}
-                            </div>
+                    <td>
+                        <a href="http://localhost:8080/WebAppProject/ViewNodeServlet?nodeid=${choice1_id}" class="nodeViewNodeTextBox">
+                       		${choice1}
                         </a>
-                        <script>
-                        if('${choice1_id}' == "0"){ 
-							document.write("<a class=\"button\" href=\"http://localhost:8080/WebAppProject/newNodeServlet?nodeChoice=1\"> Create Node</a>"); 
-						}
-                        </script>
+                        
                     </td>
                     <td style="width:14px">
 	                </td>  
-                   <td style="width:383px">
-                        <a href="http://localhost:8080/WebAppProject/ViewNodeServlet?nodeid=${choice2_id}" style="color:white; word-wrap:break-word; text-decoration: none;">
-                            <div class="choice2">
-                               ${choice2}
-                            </div>
+                   <td>
+                        <a href="http://localhost:8080/WebAppProject/ViewNodeServlet?nodeid=${choice2_id}" class="nodeViewNodeTextBox">
+                        	${choice2}
                         </a>
-                         <script>
-                        if('${choice2_id}' == "0"){ 
-							document.write("<a class=\"button\" href=\"http://localhost:8080/WebAppProject/newNodeServlet?nodeChoice=2\"> Create Node</a>"); 
-						}
-                        </script>
+                        
                     </td>  
+                </tr>
+                <tr style="height:40px;">
+                	<%if(session.getAttribute("loginState") == "1"){ %>
+						<%@include file="nodeview/loggedIn.jsp" %>
+					<%}else{%> 
+						<%@include file="nodeview/notLoggedIn.jsp" %>
+					<%}%>
                 </tr>
             </table>
         </form>

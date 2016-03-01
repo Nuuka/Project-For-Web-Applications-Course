@@ -7,20 +7,9 @@
 		 <script src="http://ariutta.github.io/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script>
 	</head>  
 	<body>  
-		<div class="header">
-		    <form action="loginServlet" method="post"> 
-			    <table width="100%" style="padding:0px">  
-			    	<tr>
-			    		<td rowspan="2" width="75%"><h1 style="text-align:center">MiMoJo</h1></td>
-				            <%if(session.getAttribute("loginState") == "1"){ %>
-								<%@include file="header/loggedIn.jsp" %>
-							<%}else{%> 
-								<%@include file="header/notLoggedIn.jsp" %>
-							<%}%>
-			        </tr>  
-			    </table> 
-		    </form> 
-	    </div>
+		
+		<%@include file="header/header.jsp" %>
+							
 	    <div id="left">
 		    <div class="updates">
 		    	<table>
@@ -91,7 +80,7 @@
 				svg.setAttributeNS (null, "width", 0);
 				//svg.setAttributeNS (null, "height", 500);
 				svg.setAttributeNS (null, "id", "viewNodeBox");
-				svg.setAttributeNS (null, "style", "border:1px solid black; display: inline; width: 99.5%; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ");
+				svg.setAttributeNS (null, "style", "display: inline; width: 99.5%; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ");
 				svg.setAttributeNS (null, "viewBox", "0 0 900 900");
 				var svgNS = svg.namespaceURI;
 				loopThrough();
@@ -231,8 +220,12 @@
 		</div>
 		<div id="right">
 		
-			<!-- <a href="newNode.jsp" class="modernButton" style="width:152px">Create Node </a>  -->
-			<a href="ViewNodeServlet?nodeid=1" class="modernButton" style="width:152px">View Node </a>
+			<a href="ViewNodeServlet?nodeid=1" class="modernButton" style="width:152px">View Nodes </a>
+			<%/*if(session.getAttribute("loginState") == "1"){ 
+				out.println("<a href=\"ViewNodeServlet?nodeid=1\" class=\"modernButton\" style=\"width:152px\">View Node </a>");
+			}	*/ 
+			%>
+			
 		
 		</div>
 
