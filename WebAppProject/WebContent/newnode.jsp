@@ -20,6 +20,7 @@
          <form action="newNodeServlet" method="post"  id="postStoryForm"> 
 
             node currently editing: <input type="text" name="node_id"><br/>
+            
             <label for="msg"  >Story:</label><br/>
             <!--Main text area for the users Story-->
             <textarea name="postText" id="msg" style="resize:both" rows="8" cols="72"></textarea><br/>

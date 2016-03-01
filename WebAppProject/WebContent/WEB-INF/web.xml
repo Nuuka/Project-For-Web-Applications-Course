@@ -17,6 +17,10 @@
         <servlet-name>newNode</servlet-name>  
         <servlet-class>servlets.NewNodeServlet</servlet-class>  
     </servlet> 
+    <servlet>  
+        <servlet-name>viewNode</servlet-name>  
+        <servlet-class>servlets.viewNodeServlet</servlet-class>  
+    </servlet> 
   
     <servlet-mapping>  
         <servlet-name>login</servlet-name>  
@@ -30,6 +34,10 @@
         <servlet-name>newNode</servlet-name>  
         <url-pattern>/newNodeServlet</url-pattern>  
     </servlet-mapping>  
+    <servlet-mapping>  
+        <servlet-name>viewNode</servlet-name>  
+        <url-pattern>/viewNodeServlet</url-pattern>  
+    </servlet-mapping> 
   
   
     <welcome-file-list>  

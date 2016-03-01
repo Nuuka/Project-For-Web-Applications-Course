@@ -71,7 +71,6 @@ public class NewNodeServlet extends HttpServlet{
     	String node[];
     	//The nodeid parameter is located in the url of the webpage
     	String nodeid = request.getParameter("nodeid");
-    	
     	//retrieves the node from the server by id and sets the nodes attributes in the webpage
     	node = NewNodeDao.getNode(Integer.parseInt(nodeid));
     	request.setAttribute("text", node[0]);

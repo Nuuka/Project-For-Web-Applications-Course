@@ -89,9 +89,10 @@ hr{
 /*The center of the home page */
 #center {
     margin: 0px;
-    margin-left: 5px;
-    margin-right: 5px;
-    width: calc(100% - 450px);
+    height: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: calc(100% - 442px);
     background-color: white;
     height:  calc(100% - 70px);
     float: left;
