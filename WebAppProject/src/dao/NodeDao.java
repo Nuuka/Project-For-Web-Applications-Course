@@ -11,7 +11,7 @@ import java.sql.SQLException;
  * @author Mohamed Ashour
  * @version 1.0
  */
-public class NewNodeDao { 
+public class NodeDao { 
 	/**
 	 * Connects to the database and adds a new node to the nodes table.
 	 * 
@@ -52,11 +52,11 @@ public class NewNodeDao {
             pst.execute();
             
             if(nodeChoice == 1){
-            	PreparedStatement pst2 = conn.prepareStatement("UPDATE form.ct_nodes parent INNER JOIN form.ct_nodes child ON parent.id = child.root_id SET parent.choice1_id = child.id WHERE parent.id = ?");
+            	PreparedStatement pst2 = conn.prepareStatement("UPDATE form.ct_nodes parent INNER JOIN form.ct_nodes child ON parent.id = child.root_id AND child.id <> parent.choice2_id SET parent.choice1_id = child.id WHERE parent.id = ?");
             	pst2.setInt(1, node_id);
             	pst2.execute();
             }else if (nodeChoice == 2){
-            	PreparedStatement pst2 = conn.prepareStatement("UPDATE form.ct_nodes parent INNER JOIN form.ct_nodes child ON parent.id = child.root_id SET parent.choice2_id = child.id WHERE parent.id = ?");
+            	PreparedStatement pst2 = conn.prepareStatement("UPDATE form.ct_nodes parent INNER JOIN form.ct_nodes child ON parent.id = child.root_id AND child.id <> parent.choice1_id SET parent.choice2_id = child.id WHERE parent.id = ?");
                 pst2.setInt(1, node_id);
                 pst2.execute();
             }

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.NewNodeDao;   
+import dao.NodeDao;   
  
 /**
  * The servlet used for handling nodes.
@@ -35,7 +35,7 @@ public class ViewNodeServlet extends HttpServlet{
     	String nodeid = request.getParameter("nodeid");
     	
     	//retrieves the node from the server by id and sets the nodes attributes in the webpage
-    	node = NewNodeDao.getNode(Integer.parseInt(nodeid));
+    	node = NodeDao.getNode(Integer.parseInt(nodeid));
     	request.setAttribute("text", node[0]);
     	request.setAttribute("choice1", node[1]);
     	request.setAttribute("choice2", node[2]);

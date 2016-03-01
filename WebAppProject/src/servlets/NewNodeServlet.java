@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;  
 import javax.servlet.http.HttpSession;
 
-import dao.NewNodeDao;   
+import dao.NodeDao;   
  
 /**
  * The servlet used for handling nodes.
@@ -46,7 +46,7 @@ public class NewNodeServlet extends HttpServlet{
         System.out.println(nodeChoice);
   
         //Enters the node to the database
-        if(NewNodeDao.validate(pText, choice1, choice2, node_id, userid, nodeChoice)){    
+        if(NodeDao.validate(pText, choice1, choice2, node_id, userid, nodeChoice)){    
             RequestDispatcher rd=request.getRequestDispatcher("newnode.jsp");    
             rd.forward(request,response);    
         }    

@@ -15,7 +15,9 @@ html, body
     padding: 0px;
     color: white;
     height: 70px;
- 
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: black;
 }
  
 .header table{
@@ -33,6 +35,19 @@ html, body
     font-size:14px;
     font-weight:bold;
     padding:2px 20px;
+}
+
+.modernButton {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
  
 #rbutton {
@@ -81,7 +96,7 @@ hr{
 /*The center left side of the home page */ 
 #left {
     width:220px;
-    background-color: #bdc3c7;
+    background-color: #f1f1f1;
     height:  calc(100% - 70px);
     float: left;
     margin: 0px;
@@ -101,7 +116,7 @@ hr{
 #right {
     margin: 0px;
     width: 220px;
-    background-color: #bdc3c7;
+    background-color: #f1f1f1;
     height:  calc(100% - 70px);
     float: left;
 }
