@@ -1,16 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <html>  
 	<head>  
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
 		<title>Login Application</title>  
 		<link rel="stylesheet" type="text/css" href="main.css">
 		 <script src="http://ariutta.github.io/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script>
 	</head>  
 	<body>  
 		
-		<%@include file="header/header.jsp" %>
-							
-	    <div id="left">
+		
+							<!-- 
+	    	<a href="ViewNodeServlet?nodeid=1" class="modernButton" style="width:152px">View Nodes </a>
 		    <div class="updates">
 		    	<table>
 		    		<tr>
@@ -43,191 +49,45 @@
 		    		</tr>
 		    	</table>
 		    	<hr />
-		    </div>
-	    </div>
+		    </div>-->
 		<div id="center">
-			<script>
-				//var c = document.getElementById("myCanvas");
-				//var ctx = c.getContext("2d");
-				//ctx.scale(0.4, 0.4);
-				var x = 400;
-				var y = 200;
-				var w = (x/2);
-				var test;
-				var nodesx = []; // node x coords
-				var nodesy = []; // node y coords
-				var nodesw = []; // node width
-				var nodeLeft = []; // node left id
-				var nodeRight = []; // node right id
-				var ydrop = 50; // amount of pixels to draw next row on
-				var circleWidth = 10;
-				var levels = 0;
-				//ctx.font = "15px Arial";
-
-
-				storeNode(1,2,0);
-				storeNode(2,0,9);
-				storeNode(9,10,11);
-				storeNode(10,12,0);
-
-
-				
-				
-				
-
-				
-				var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-				svg.setAttributeNS (null, "width", 0);
-				//svg.setAttributeNS (null, "height", 500);
-				svg.setAttributeNS (null, "id", "viewNodeBox");
-				svg.setAttributeNS (null, "style", "display: inline; width: 99.5%; min-width: inherit; max-width: inherit; height: inherit; min-height: inherit; max-height: inherit; ");
-				svg.setAttributeNS (null, "viewBox", "0 0 900 900");
-				var svgNS = svg.namespaceURI;
-				loopThrough();
-				
-				document.getElementById("center").appendChild(svg);
-
-				
-				function drawline(x,y,xd,yd){
-					var circle = document.createElementNS(svgNS,'line');
-					circle.setAttribute('x1',x);
-					circle.setAttribute('y1',y);
-					circle.setAttribute('x2',xd);
-					circle.setAttribute('y2',yd);
-					circle.setAttribute('style','stroke:rgb(255,0,0);stroke-width:2');
-					
-					svg.appendChild(circle);
-				
-				}
-				function drawblackline(x,y,xd,yd){
-					var circle = document.createElementNS(svgNS,'line');
-					circle.setAttribute('x1',x);
-					circle.setAttribute('y1',y);
-					circle.setAttribute('x2',xd);
-					circle.setAttribute('y2',yd);
-					circle.setAttribute('style','stroke:rgb(0,0,0);stroke-width:2');
-					svg.appendChild(circle);
-				
-				}
-				function drawcircle(x,y,nodeid){
-					var circle = document.createElementNS(svgNS,'circle');
-					circle.setAttribute('cx',x);
-					circle.setAttribute('cy',y);
-					circle.setAttribute('r',10);
-					circle.setAttribute('stroke','green');
-					circle.setAttribute('stroke-width',2);
-					circle.setAttribute('fill','yellow');
-					circle.setAttribute('onmouseover',"evt.target.setAttribute('fill', 'black');");
-					circle.setAttribute('onmouseout',"evt.target.setAttribute('fill', 'yellow');");
-					circle.setAttribute('xlink:href','www.google.com');
-
-					svg.appendChild(circle);
-					var text = document.createElementNS(svgNS,'text');
-					text.setAttribute('x',x);
-					text.setAttribute('y',y-12);
-					text.setAttribute('fill','black');
-					var t=document.createTextNode(nodeid);
-					text.appendChild(t);
-					svg.appendChild(text);
-					//<text x="0" y="15" fill="red">I love SVG!</text>
-				}
-				/*
-					Function to loop drawing the branches.
-					It will not draw a branch if there is no left node id.
-					It will stop attempting to draw branches after getting (maxTries) failed branches in a row.
-				*/
-				function loopThrough(){
-					drawnodebranch(1);
-					var numOfUndefined = 0; //number of undefined in a row
-					var maxTries = 50;
-					for (i = 2;; i++){
-						if(nodeLeft[i] == undefined){
-							numOfUndefined += 1;
-						}else{
-							drawnodebranch(i);
-							numOfUndefined = 0;
-						}
-						
-						if(numOfUndefined >= maxTries){
-							break;
-						}
-					}
-					
-					
-				}
-				function drawbranch(x,y,w,nodeid){
-
-					if(nodeLeft[nodeid] != 0){
-						//draw left branch
-						drawline(x,y,x-w,y+ydrop);
-						drawcircle(x-w,y+ydrop,nodeLeft[nodeid]);
-						//save node
-						nodesx[nodeLeft[nodeid]] = x-w;
-						nodesy[nodeLeft[nodeid]] = y+ydrop;
-						nodesw[nodeLeft[nodeid]] = w;
-					}
-					if(nodeRight[nodeid] != 0){
-						//draw right branch
-						drawline(x,y,x+w,y+ydrop);
-						drawcircle(x+w,y+ydrop,nodeRight[nodeid]);
-						//save node
-						nodesx[nodeRight[nodeid]] = x+w;
-						nodesy[nodeRight[nodeid]] = y+ydrop;
-						nodesw[nodeRight[nodeid]] = w;
-						//nodeCount += 1;
-					}
-				}
-
-				/*
-					Used to draw the entire node.
-				*/
-				function drawnodebranch(nodeid){
-					if(nodeid == 1){
-						//draw the first node
-						drawcircle(x,y,nodeid);
-					}else if (nodeid != 0){
-						y = nodesy[nodeid];
-						x = nodesx[nodeid];
-						w = nodesw[nodeid];
-					}
-					//drawbranch(x,y,w/2);
-					if(nodeid != 0){
-						drawbranch(x,y,w/2,nodeid);
-					}
-
-				}
-				function storeNode(nodeid,leftid,rightid){
-					nodeLeft[nodeid] = leftid;
-					nodeRight[nodeid] = rightid;
-				}
-				function out(string){
-					document.write(string);
-				}
-				
-
-				  // Don't use window.onLoad like this in production, because it can only listen to one function.
-				  window.onload = function() {
-					// Expose to window namespase for testing purposes
-					window.zoomTiger = svgPanZoom('#viewNodeBox', {
-					  zoomEnabled: true,
-					  controlIconsEnabled: true,
-					  fit: true,
-					  center: true,
-					  // viewportSelector: document.getElementById('demo-tiger').querySelector('#g4') // this option will make library to misbehave. Viewport should have no transform attribute
-					});
-				  };
-			</script>
+			<%//@include file="includePages/nodeTree.jsp" %>
+			<p>&nbsp;</p>
+			<h1>Title</h1>
+			<hr />
+			<p>Her extensive perceived may any sincerity extremity. Indeed add rather may pretty see. Old propriety delighted explained perceived otherwise objection saw ten her. Doubt merit sir the right these alone keeps. By sometimes intention smallness he northward. Consisted we otherwise arranging commanded discovery it explained. Does cold even song like two yet been. Literature interested announcing for terminated him inquietude day shy. Himself he fertile chicken perhaps waiting if highest no it. Continued promotion has consulted fat improving not way.  Or neglected agreeable of discovery concluded oh it sportsman. Week to time in john. Son elegance use weddings separate. Ask too matter formed county wicket oppose talent. He immediate sometimes or to dependent in. Everything few frequently discretion surrounded did simplicity decisively. Less he year do with no sure loud. 
+			</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<h1>Title</h1>
+			<hr />
+			<p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, velit vel posuere luctus, justo magna venenatis augue, vitae auctor mi nisl vitae est. Aliquam sed laoreet justo, eu rhoncus mi. Nulla sit amet sapien velit. Fusce maximus ligula est, id laoreet magna consectetur ut. Cras molestie mattis lorem eu volutpat. Duis ac erat nec nulla ultrices ullamcorper eu non mi. Donec elementum sodales nulla sed aliquet. Nulla dolor mauris, viverra vitae vestibulum in, placerat tristique risus. Praesent condimentum id libero at fermentum. Phasellus sagittis at arcu in ullamcorper. Aliquam dui nisi, tincidunt vitae arcu nec, dapibus blandit ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla posuere mollis nunc, in ultrices lectus fringilla sit amet. Nunc fringilla felis mauris, nec venenatis eros consectetur commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc dapibus, neque a varius ornare, enim neque porttitor augue, sagittis semper dui nibh sit amet augue.</p>
+			<p>&nbsp;</p>
+			<h1>Title</h1>
+			<hr />
+			<p>Her extensive perceived may any sincerity extremity. Indeed add rather may pretty see. Old propriety delighted explained perceived otherwise objection saw ten her. Doubt merit sir the right these alone keeps. By sometimes intention smallness he northward. Consisted we otherwise arranging commanded discovery it explained. Does cold even song like two yet been. Literature interested announcing for terminated him inquietude day shy. Himself he fertile chicken perhaps waiting if highest no it. Continued promotion has consulted fat improving not way.  Or neglected agreeable of discovery concluded oh it sportsman. Week to time in john. Son elegance use weddings separate. Ask too matter formed county wicket oppose talent. He immediate sometimes or to dependent in. Everything few frequently discretion surrounded did simplicity decisively. Less he year do with no sure loud. 
+			</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<h1>Title</h1>
+			<hr />
+			<p>Her extensive perceived may any sincerity extremity. Indeed add rather may pretty see. Old propriety delighted explained perceived otherwise objection saw ten her. Doubt merit sir the right these alone keeps. By sometimes intention smallness he northward. Consisted we otherwise arranging commanded discovery it explained. Does cold even song like two yet been. Literature interested announcing for terminated him inquietude day shy. Himself he fertile chicken perhaps waiting if highest no it. Continued promotion has consulted fat improving not way.  Or neglected agreeable of discovery concluded oh it sportsman. Week to time in john. Son elegance use weddings separate. Ask too matter formed county wicket oppose talent. He immediate sometimes or to dependent in. Everything few frequently discretion surrounded did simplicity decisively. Less he year do with no sure loud. 
+			</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<div id="google_translate_element"></div><script type="text/javascript">
+			function googleTranslateElementInit() {
+			  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+			}
+			</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
 		</div>
-		<div id="right">
 		
-			<a href="ViewNodeServlet?nodeid=1" class="modernButton" style="width:152px">View Nodes </a>
-			<%/*if(session.getAttribute("loginState") == "1"){ 
-				out.println("<a href=\"ViewNodeServlet?nodeid=1\" class=\"modernButton\" style=\"width:152px\">View Node </a>");
-			}	*/ 
-			%>
-			
+		<%@include file="header/header.jsp" %>
+
 		
-		</div>
+		
+		
 
 	</body>  
 </html>

@@ -5,23 +5,63 @@
 html, body
 {
     margin: 0px;
+    background-color: #f1f1f1;
 }
  
-.header{
-    background-color: #11464A;
+#header{
+	position:fixed;
+    background: black; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#73DC95, #5ECA7F); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#73DC95, #5ECA7F); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#73DC95, #5ECA7F); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#73DC95, #5ECA7F); /* Standard syntax */
     width: 100%;
     color: #000000;
+    text-shadow: 1px 1px 1px #555;
     margin: 0px;
     padding: 0px;
     color: white;
-    height: 70px;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	border-bottom-color: black;
+    height: 60px;
+    border:0px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	
+
 }
  
-.header table{
+#header table{
     color:white;
+}
+.option:hover{
+    background: #555;
+}
+.option:hover #dropDownList{
+    visibility:visible;
+}
+
+#dropDownList{
+	text-align:center;
+	width:15%;
+	visibility: hidden;
+	position:absolute;
+	transform:translate(-1px,4px);
+}
+#dropDownList ul{
+	z-index: 10;
+	list-style: none;
+	padding:0px;
+}
+#dropDownList ul li{
+	z-index: 10;
+	background: #555;
+	display:block;
+	padding-top:15px;
+	padding-bottom:15px;
+	cursor:pointer;
+}
+
+#dropDownList ul li:hover{
+	z-index: 10;
+	background-color:#666;
 }
  
 .button {
@@ -70,14 +110,18 @@ html, body
 }
  
 /*The Main from for the login to hold the contents */
-.loginBlock{
+#loginBlock{
     display:block;
     margin-left:auto;
     margin-right:auto;
     margin-top: calc( 20vh - 0px );
     width: 350px;
     height: 500px;
-    background-color: #11464A;
+    background: black; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#73DC95, #5ECA7F); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#73DC95, #5ECA7F); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#73DC95, #5ECA7F); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#73DC95, #5ECA7F); /* Standard syntax */
     color: #ffffff;
     border-radius:5px;
    
@@ -89,36 +133,29 @@ html, body
 }
  
 hr{
-    color: #f00;
-    background-color: #7f8c8d;
-    height: 2px;
-}
-/*The center left side of the home page */ 
-#left {
-    width:220px;
-    background-color: #f1f1f1;
-    height:  calc(100% - 71px);
-    float: left;
-    margin: 0px;
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
 /*The center of the home page */
 #center {
-    margin: 0px;
-    height: 100%;
-    margin-left: 0px;
+
+	width:70%;
+    height: calc(100%-61px);
+    margin-top:61px;
+    margin-left: 15%;
     margin-right: 0px;
-    width: calc(100% - 442px);
+    padding-left: 50px;
+    padding-right: 50px;
+    width: calc(70% - 100px);
     background-color: white;
-    height:  calc(100% - 71px);
-    float: left;
-}
-/*The right side of the home page */
-#right {
-    margin: 0px;
-    width: 220px;
-    background-color: #f1f1f1;
-    height:  calc(100% - 71px);
-    float: left;
+    height:  calc(100% - 61px);
+    float: left;/*
+    background-image: url("http://www.puyrondcamping.com/wp-content/uploads/2014/12/ladybird-webpage-background3.jpg");
+    background-size:     cover;                    
+    background-repeat:   no-repeat;
+    background-position: center center; */
 }
  
  /*Main frame for the register page*/
@@ -129,7 +166,11 @@ hr{
     margin-top: calc( 20vh - 0px );
     width: 500px;
     height: 600px;
-    background-color: #11464A;
+    background: black; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#73DC95, #5ECA7F); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#73DC95, #5ECA7F); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#73DC95, #5ECA7F); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#73DC95, #5ECA7F); /* Standard syntax */
     color: #ffffff;
     border-radius:5px;
 }
@@ -138,10 +179,13 @@ hr{
 	display:block;
     margin-left:auto;
     margin-right:auto;
-    margin-top: calc( 20vh - 0px );
     width: 700px;
     height: 600px;
-    background-color: #11464A;
+    background: black; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#59BCFB, #3897D9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#59BCFB, #3897D9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#59BCFB, #3897D9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#59BCFB, #3897D9); /* Standard syntax */
     color: #ffffff;
     border-radius:5px;
 }
@@ -169,17 +213,23 @@ label {
 	display:block;
     margin-left:auto;
     margin-right:auto;
+    
     /*margin-top: calc( 10vh - 0px );*/
-    width: 80%;
+    width:70%;
     height: 600px;
-    background-color: #11464A;
+    background: black; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#59BCFB, #3897D9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#59BCFB, #3897D9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#59BCFB, #3897D9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#59BCFB, #3897D9); /* Standard syntax */
     color: #ffffff;
     border-radius:5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /*Text box for the choices in the node view*/
 .nodeViewNodeTextBox{
-	color:white; 
+	color:black; 
 	word-wrap:break-word; 
 	text-decoration: none;
 	display:block;
@@ -188,7 +238,7 @@ label {
     border-style:solid;
     border-width:1px;
     border-color:black;
-    /*background-color:black;*/
+    background-color:#F2F1EF;
 }
 
 .nodeViewTextTable{
@@ -197,3 +247,14 @@ label {
 	table-layout: fixed;
 	text-align:center;
 }
+#shadow{
+	word-wrap:break-word; 
+	vertical-align:top;
+	color:black;
+	border-radius:5px;
+	background-color:#F2F1EF;
+    border-style:solid;
+    border-width:1px;
+   	border-color:#555;	
+}
+

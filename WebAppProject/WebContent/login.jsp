@@ -17,7 +17,7 @@
             <h1 style="text-align:center ">MiMoJo</h1>    
     </div>
     	<!-- Main frame to hold contents-->
-        <div class="loginBlock" >
+        <div id="loginBlock" >
             <div class="loginTitle">
                 <h3 style="line-height: 175px">Login</h3>
             </div>

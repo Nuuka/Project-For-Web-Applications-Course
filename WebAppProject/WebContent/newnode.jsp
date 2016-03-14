@@ -9,6 +9,9 @@
     <!--Basic user form to add their parts of the story as well as their two choices-->
     <%@include file="header/header.jsp" %>
         <!--Main frame for the contents-->
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
     <div class="postBlock" >
         <div class="loginTitle">
             <h3 style="line-height: 175px">Post Story</h3>

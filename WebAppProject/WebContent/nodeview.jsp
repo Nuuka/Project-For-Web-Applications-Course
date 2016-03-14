@@ -7,6 +7,9 @@
     </head>
     <body>  
     <%@include file="header/header.jsp" %>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
     <div class="displayBlock" >
         <div class="loginTitle">
             <h3 style="line-height: 30px">Here's what this node says...</h3>
@@ -14,7 +17,7 @@
         <form id="postStoryForm">
             <table class="nodeViewTextTable" style="height:45%;">
                 <tr>
-                    <td style="word-wrap:break-word; color: #ffffff; vertical-align:top ">
+                    <td id="shadow" style="">
                       	${text}
                     </td>
                 </tr>
