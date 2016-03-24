@@ -34,6 +34,7 @@ public class NewNodeServlet extends HttpServlet{
         String pText = request.getParameter("postText");    
         String choice1 = request.getParameter("choice1");
         String choice2 = request.getParameter("choice2");
+        String pictureText = request.getParameter("pictureText");
        
         
         HttpSession session = request.getSession(false);  
@@ -46,7 +47,7 @@ public class NewNodeServlet extends HttpServlet{
         System.out.println(nodeChoice);
   
         //Enters the node to the database
-        if(NodeDao.validate(pText, choice1, choice2, node_id, userid, nodeChoice)){    
+        if(NodeDao.validate(pText, choice1, choice2, node_id, userid, nodeChoice,pictureText)){    
             RequestDispatcher rd=request.getRequestDispatcher("newnode.jsp");    
             rd.forward(request,response);    
         }    

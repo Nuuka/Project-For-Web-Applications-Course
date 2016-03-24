@@ -6,16 +6,28 @@
         <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     <body>  
-    <%@include file="header/header.jsp" %>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <div>
+
+    <div id="center">
         <div class="loginTitle">
-            <h3 style="line-height: 30px">Here's what this node says...</h3>
+            <h3 style="line-height: 30px;color:black;">Here's what this node says...</h3>
         </div>
         <form id="postStoryForm">
-            <table class="nodeViewTextTable" style="height:45%;">
+            <table id="imageTable" class="nodeViewTextTable" style="height:45%;">
+            	<tr id="imageRow">
+            		<td id="imageTD"><img id="img-circle" style="width:200px;height:200px;" src="">
+						<script>
+						var image =  document.getElementById('img-circle');
+						var imageString = '<%=request.getAttribute("nodePictureString")%>';
+						image.src = 'data:image/png;base64,'+ imageString;
+						
+						if(imageString == 'null'){
+							document.getElementById('imageTD').removeChild(image);
+							document.getElementById('imageRow').removeChild(document.getElementById('imageTD'));
+							document.getElementById('imageTable').deleteRow(0);
+						}
+						</script>
+					</td>
+            	</tr>
                 <tr>
                     <td id="shadow" style="">
                       	${text}
@@ -49,5 +61,7 @@
             </table>
         </form>
     </div>
+    
+    <%@include file="header/header.jsp" %>
     </body>  
 </html>  

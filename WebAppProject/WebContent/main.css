@@ -8,6 +8,26 @@ html, body
     background-color: #f1f1f1;
 }
  
+ 
+ html {
+ position: relative;
+ min-height: 100%;
+}
+
+body{
+ margin: 0 0 0 0;
+}
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+    } 
+body {
+    top: 0px !important; 
+    }
+
+h3{
+	color:black;
+}
 #header{
 	position:fixed;
     background: black; /* For browsers that do not support gradients */
@@ -48,11 +68,13 @@ html, body
 #footer {
     clear: both;
     position: relative;
+    left: 0;
+    bottom 0;
     background-color:black;
-    height: 3em;
+    height: 50px;
+    width: 100%;
     margin-top: -3em;
 }
- 
 #header table{
     color:white;
 }

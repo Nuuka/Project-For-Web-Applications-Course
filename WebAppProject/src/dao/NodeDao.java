@@ -20,11 +20,12 @@ public class NodeDao {
 	 * @param choice1 The text in choice1
 	 * @param choice2 The text in choice2
 	 * @param node_id The id of the new node, this was for debugging purposes only and will be removed later
+	 * @param pictureText 
 	 * @param choice1_id The id of the node connecting to choice1, this was for debugging purposes only and will be removed later
 	 * @param choice2_id The id of the node connecting to choice2, this was for debugging purposes only and will be removed later
 	 * @return True if the function was successful, otherwise false
 	 */
-    public static boolean validate(String text, String choice1, String choice2, int node_id, int user_id, int nodeChoice) {          
+    public static boolean validate(String text, String choice1, String choice2, int node_id, int user_id, int nodeChoice, String pictureText) {          
         boolean status = true;  
         Connection conn = null;  
         PreparedStatement pst = null;  
@@ -42,12 +43,13 @@ public class NodeDao {
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
             
-            pst = conn.prepareStatement("INSERT INTO form.ct_nodes (text, choice1_text, choice2_text, root_id, user_id) VALUES (?, ?, ?, ?, ?)");
+            pst = conn.prepareStatement("INSERT INTO form.ct_nodes (text, choice1_text, choice2_text, root_id, user_id, picture_string) VALUES (?, ?, ?, ?, ?, ?)");
             pst.setString(1, text);  
             pst.setString(2, choice1);
             pst.setString(3, choice2);
             pst.setInt(4, node_id);
             pst.setInt(5, user_id);
+            pst.setString(6, pictureText);
   
             pst.execute();
             
@@ -99,7 +101,7 @@ public class NodeDao {
     	Connection conn = null;  
         PreparedStatement pst = null;  
         ResultSet rs = null; 
-        String[] node = new String[5];
+        String[] node = new String[6];
   
         String url = "jdbc:mysql://localhost:3306/";  
         String dbName = "form";  
@@ -112,7 +114,7 @@ public class NodeDao {
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
             
-            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id FROM form.ct_nodes WHERE id = ?");
+            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id, picture_string FROM form.ct_nodes WHERE id = ?");
             pst.setInt(1, nodeid);
   
             rs = pst.executeQuery();
@@ -122,6 +124,8 @@ public class NodeDao {
             node[2] = rs.getString(3);
             node[3] = rs.getString(4);
             node[4] = rs.getString(5);
+            node[5] = rs.getString(6);
+            
             
             //node[1] = rs.getString("choice1_text");
   

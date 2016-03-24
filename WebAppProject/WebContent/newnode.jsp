@@ -6,26 +6,25 @@
     </head>
     
     <body>  
-    <!--Basic user form to add their parts of the story as well as their two choices-->
-    <%@include file="header/header.jsp" %>
-        <!--Main frame for the contents-->
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <div class="postBlock" >
+    <div id="center">
         <div class="loginTitle">
             <h3 style="line-height: 175px">Post Story</h3>
         </div>
         <!--Form with option to post the story and the users 2 choices (overide width to default to center the textarea)-->
          <form action="newNodeServlet" method="post"  id="postStoryForm"> 
-
-           
-            
+            <img id="img-circle" style="width:200px;height:200px;" src="">
+            <br />
+        	Choose a picture: <input type="file" id="filePicker">
+			<script>
+				var image =  document.getElementById('img-circle');
+				image.src = 'data:image/png;base64,'+ '<%=session.getAttribute("pictureString")%>';
+			</script>
+			
             <label for="msg"  >Story:</label><br/>
             <!--Main text area for the users Story-->
             <textarea name="postText" id="msg" style="resize:both" rows="8" cols="72"></textarea><br/>
             <!--Table to hold the 2 chocie text boxes-->
-            <table style="margin-left: 50px;">
+            <table style="margin-left: auto;margin-right:auto">
                 <tr>
                     <td style="color: #ffffff">
                         <label  style="color:#ffffff" for="msg">Choice 1:</label><br/>
@@ -43,8 +42,45 @@
 
             </table>
             <!--Submit button-->
+            <input id ="pictureText" type="hidden" name="pictureText" value="">
             <input type="submit" value="Submit" style="text-align: center">
-        </form>
-    </div>
+            <!-- ---------- -->
+		</form>
+        	<script>
+	        	
+	        	var binaryString;
+				var t;
+				var p;
+				var handleFileSelect = function(evt) {
+				    var files = evt.target.files;
+				    var file = files[0];
+						
+				    if (files && file) {
+				        var reader = new FileReader();
+				
+				        reader.onload = function(readerEvt) {
+				            binaryString = readerEvt.target.result;
+				            t = btoa(binaryString.toString());
+				            document.getElementById('pictureText').value = t;
+				            test();
+				        };
+				        reader.readAsBinaryString(file);
+				        
+				    }
+				};
+				
+				if (window.File && window.FileReader && window.FileList && window.Blob) {
+				    document.getElementById('filePicker').addEventListener('change', handleFileSelect, false);
+				} else {
+				    alert('The File APIs are not fully supported in this browser.');
+				}
+				
+				function test(){
+				  var image =  document.getElementById('img-circle');
+				  image.src = 'data:image/png;base64,'+ t;
+				}//window.location = "AccountServlet?pictureText=test";
+			</script>
+    </div>    
+    <%@include file="header/header.jsp" %>
     </body>  
 </html>

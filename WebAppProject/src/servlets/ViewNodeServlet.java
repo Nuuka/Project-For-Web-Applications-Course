@@ -41,6 +41,7 @@ public class ViewNodeServlet extends HttpServlet{
     	request.setAttribute("choice2", node[2]);
     	request.setAttribute("choice1_id", node[3]);
     	request.setAttribute("choice2_id", node[4]);
+    	request.setAttribute("nodePictureString", node[5]);
     	
     	HttpSession session = request.getSession(false);  
         if(session!=null)  
