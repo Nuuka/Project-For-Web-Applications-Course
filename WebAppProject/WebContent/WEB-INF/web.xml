@@ -21,6 +21,10 @@
         <servlet-name>viewNode</servlet-name>  
         <servlet-class>servlets.ViewNodeServlet</servlet-class>  
     </servlet> 
+    <servlet>  
+        <servlet-name>account</servlet-name>  
+        <servlet-class>servlets.AccountServlet</servlet-class>  
+    </servlet> 
   
     <servlet-mapping>  
         <servlet-name>login</servlet-name>  
@@ -37,7 +41,12 @@
    	<servlet-mapping>  
         <servlet-name>viewNode</servlet-name>  
         <url-pattern>/ViewNodeServlet</url-pattern>  
-    </servlet-mapping>  
+    </servlet-mapping> 
+    <servlet-mapping>  
+        <servlet-name>account</servlet-name>  
+        <url-pattern>/AccountServlet</url-pattern>  
+    </servlet-mapping>   
+
   
   
     <welcome-file-list>  

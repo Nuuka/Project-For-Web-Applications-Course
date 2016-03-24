@@ -11,10 +11,10 @@ html, body
 #header{
 	position:fixed;
     background: black; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#73DC95, #5ECA7F); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#73DC95, #5ECA7F); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#73DC95, #5ECA7F); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#73DC95, #5ECA7F); /* Standard syntax */
+    background: -webkit-linear-gradient(#33A828, #2d9724); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#33A828, #2d9724); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#33A828, #2d9724); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#33A828, #2d9724); /* Standard syntax */
     width: 100%;
     color: #000000;
     text-shadow: 1px 1px 1px #555;
@@ -26,6 +26,31 @@ html, body
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	
 
+}
+#center {
+	bottom: 0;
+	width:70%;
+    height: calc(100%-61px);
+    margin-top:61px;
+    margin-left: 15%;
+    margin-right: 0px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: calc(70% - 100px);
+    background-color: white;
+    height:  calc(100% - 61px);
+    float: left;/*
+    background-image: url("http://www.puyrondcamping.com/wp-content/uploads/2014/12/ladybird-webpage-background3.jpg");
+    background-size:     cover;                    
+    background-repeat:   no-repeat;
+    background-position: center center; */
+}
+#footer {
+    clear: both;
+    position: relative;
+    background-color:black;
+    height: 3em;
+    margin-top: -3em;
 }
  
 #header table{
@@ -78,7 +103,7 @@ html, body
 }
 
 .modernButton {
-    background-color: #e74c3c;
+    background-color: #BD2D39;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -88,6 +113,20 @@ html, body
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+}
+.modernButtonSmall {
+    background-color: #BD2D39;
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.modernButtonSmall:hover{
+	background-color: #a63db0;
 }
  
 #rbutton {
@@ -111,20 +150,42 @@ html, body
  
 /*The Main from for the login to hold the contents */
 #loginBlock{
+	position:absolute;
     display:block;
     margin-left:auto;
     margin-right:auto;
-    margin-top: calc( 20vh - 0px );
+    top: calc( 20vh - 0px );
     width: 350px;
     height: 500px;
     background: black; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#73DC95, #5ECA7F); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#73DC95, #5ECA7F); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#73DC95, #5ECA7F); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#73DC95, #5ECA7F); /* Standard syntax */
+    background: -webkit-linear-gradient(#33A828, #2d9724); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#33A828, #2d9724); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#33A828, #2d9724); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#33A828, #2d9724); /* Standard syntax */
     color: #ffffff;
-    border-radius:5px;
-   
+    border-radius:5px;  
+}
+
+/*The Main from for the login to hold the contents */
+#loginPage{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    width: 350px;
+    height: 500px;
+    background: black; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#33A828, #2d9724); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#33A828, #2d9724); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#33A828, #2d9724); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#33A828, #2d9724); /* Standard syntax */
+    color: #ffffff;
+    border-radius:5px;  
+}
+
+
+
+#loginInfo{
+	text-align: center;
 }
  /*The title of the login design */
 .loginTitle{
@@ -138,25 +199,14 @@ hr{
     background: #333;
     background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
-/*The center of the home page */
-#center {
-
-	width:70%;
-    height: calc(100%-61px);
-    margin-top:61px;
-    margin-left: 15%;
-    margin-right: 0px;
-    padding-left: 50px;
-    padding-right: 50px;
-    width: calc(70% - 100px);
-    background-color: white;
-    height:  calc(100% - 61px);
-    float: left;/*
-    background-image: url("http://www.puyrondcamping.com/wp-content/uploads/2014/12/ladybird-webpage-background3.jpg");
-    background-size:     cover;                    
-    background-repeat:   no-repeat;
-    background-position: center center; */
+hr.onGreen{
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #2F9D26, #333, #2F9D26);
 }
+
+
  
  /*Main frame for the register page*/
 .registerBlock{
@@ -256,5 +306,8 @@ label {
     border-style:solid;
     border-width:1px;
    	border-color:#555;	
+}
+#img-circle {
+    border-radius: 50%;
 }
 

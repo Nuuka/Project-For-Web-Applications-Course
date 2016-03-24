@@ -32,7 +32,7 @@
 	svg.setAttributeNS (null, "width", 0);
 	//svg.setAttributeNS (null, "height", 500);
 	svg.setAttributeNS (null, "id", "viewNodeBox");
-	svg.setAttributeNS (null, "style", "display: inline; width: 99.5%; min-width: inherit; max-width: inherit; height: 99%;border-style:solid;border-width:1px;border-color:black;");
+	svg.setAttributeNS (null, "style", "display: inline; width: 99.5%; min-width: inherit; max-width: inherit; height: 50%;border-style:solid;border-width:1px;border-color:black;");
 	svg.setAttributeNS (null, "viewBox", "0 0 900 900");
 	var svgNS = svg.namespaceURI;
 	loopThrough();

@@ -10,7 +10,7 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    <div class="displayBlock" >
+    <div>
         <div class="loginTitle">
             <h3 style="line-height: 30px">Here's what this node says...</h3>
         </div>
@@ -25,7 +25,7 @@
             <table class="nodeViewTextTable" style="margin-top:50px; height:30%">
                 <tr>
                     <td>
-                        <a href="http://localhost:8080/WebAppProject/ViewNodeServlet?nodeid=${choice1_id}" class="nodeViewNodeTextBox">
+                        <a href="ViewNodeServlet?nodeid=${choice1_id}" class="nodeViewNodeTextBox">
                        		${choice1}
                         </a>
                         
@@ -33,7 +33,7 @@
                     <td style="width:14px">
 	                </td>  
                    <td>
-                        <a href="http://localhost:8080/WebAppProject/ViewNodeServlet?nodeid=${choice2_id}" class="nodeViewNodeTextBox">
+                        <a href="ViewNodeServlet?nodeid=${choice2_id}" class="nodeViewNodeTextBox">
                         	${choice2}
                         </a>
                         

@@ -43,6 +43,12 @@ public class LoginServlet extends HttpServlet{
         //If the validation is successful redirects to index, otherwise redirects to the same page letting the user know it was unsuccessful 
         int id = LoginDao.validate(n, p);
         if(id != 0){    //success
+        	String[] info = LoginDao.getAccountInfo(id);
+        	session.setAttribute("firstName", info[0]);
+        	session.setAttribute("lastName", info[1]);
+        	session.setAttribute("email", info[2]);
+        	session.setAttribute("accType", info[3]);
+        	session.setAttribute("pictureString", info[4]);
         	session.setAttribute("loginState", "1");
         	session.setAttribute("loginAccount", n);
         	session.setAttribute("userid",id );
