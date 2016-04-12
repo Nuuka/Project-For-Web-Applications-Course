@@ -17,7 +17,11 @@
         	Choose a picture: <input type="file" id="filePicker">
 			<script>
 				var image =  document.getElementById('img-circle');
-				image.src = 'data:image/png;base64,'+ '<%=session.getAttribute("pictureString")%>';
+				if('<%=session.getAttribute("pictureString2")%>' == "null"){
+					image.src = "images/no-Image.png";
+				}else{
+					image.src = 'data:image/png;base64,'+ '<%=session.getAttribute("pictureString2")%>';
+				}
 			</script>
 			
             <label for="msg"  >Story:</label><br/>
@@ -42,7 +46,7 @@
 
             </table>
             <!--Submit button-->
-            <input id ="pictureText" type="hidden" name="pictureText" value="">
+            <input id ="pictureText2" type="hidden" name="pictureText2" value="">
             <input type="submit" value="Submit" style="text-align: center">
             <!-- ---------- -->
 		</form>
@@ -61,7 +65,7 @@
 				        reader.onload = function(readerEvt) {
 				            binaryString = readerEvt.target.result;
 				            t = btoa(binaryString.toString());
-				            document.getElementById('pictureText').value = t;
+				            document.getElementById('pictureText2').value = t;
 				            test();
 				        };
 				        reader.readAsBinaryString(file);
@@ -78,7 +82,7 @@
 				function test(){
 				  var image =  document.getElementById('img-circle');
 				  image.src = 'data:image/png;base64,'+ t;
-				}//window.location = "AccountServlet?pictureText=test";
+				}//window.location = "AccountServlet?pictureText2=test";
 			</script>
     </div>    
     <%@include file="header/header.jsp" %>

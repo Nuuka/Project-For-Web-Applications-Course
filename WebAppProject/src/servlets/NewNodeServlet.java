@@ -34,7 +34,7 @@ public class NewNodeServlet extends HttpServlet{
         String pText = request.getParameter("postText");    
         String choice1 = request.getParameter("choice1");
         String choice2 = request.getParameter("choice2");
-        String pictureText = request.getParameter("pictureText");
+        String pictureText = request.getParameter("pictureText2");
        
         
         HttpSession session = request.getSession(false);  
