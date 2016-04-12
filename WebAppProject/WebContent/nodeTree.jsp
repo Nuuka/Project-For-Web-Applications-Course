@@ -40,7 +40,7 @@
 						out.write("storeNode("+currentNode[0]+","+currentNode[1]+","+currentNode[2]+");");
 					}
 				%>
-			
+				
 			
 				
 				
@@ -55,29 +55,95 @@
 				svg.setAttributeNS (null, "viewBox", "0 0 900 900");
 				var svgNS = svg.namespaceURI;
 				loopThrough();
-				
+				drawTextBox(10,10,"test");
 				document.getElementById("center").appendChild(svg);
 			
-				
-				function drawline(x,y,xd,yd){
-					var circle = document.createElementNS(svgNS,'line');
-					circle.setAttribute('x1',x);
-					circle.setAttribute('y1',y);
-					circle.setAttribute('x2',xd);
-					circle.setAttribute('y2',yd);
-					circle.setAttribute('style','stroke:rgb(255,0,0);stroke-width:2');
+				function drawTextBox(x,y,text){
+					var box = document.createElementNS(svgNS,'rect');
+					var boxWidth = 500;
+					box.setAttribute('width',boxWidth);
+					box.setAttribute('height',200);
+					box.setAttribute('rx',20);
+					box.setAttribute('ry',20);
+					box.setAttribute('x',x);
+					box.setAttribute('y',y);
+					box.setAttribute('style','fill:red;stroke:black;stroke-width:5;opacity:0.5');
 					
-					svg.appendChild(circle);
+					var svgText = createSVGtext("asdasd", boxWidth/2, y+20);
+					//text.setAttribute('textLength',200-10);
+					
+					svg.appendChild(box);
+					svg.appendChild(svgText);
+				}
+				function createSVGtext(caption, x, y) {
+				    //  This function attempts to create a new svg "text" element, chopping 
+				    //  it up into "tspan" pieces, if the caption is too long
+				    //
+				    var svgText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+				    svgText.setAttributeNS(null, 'x', x);
+				    svgText.setAttributeNS(null, 'y', y);
+				    svgText.setAttributeNS(null, 'font-size', 12);
+				    svgText.setAttributeNS(null, 'fill', '#FFFFFF');         //  White text
+				    svgText.setAttributeNS(null, 'text-anchor', 'middle');   //  Center the text
+
+				    //  The following two variables should really be passed as parameters
+				    var MAXIMUM_CHARS_PER_LINE = 90;
+				    var LINE_HEIGHT = 16;
+
+				    var words = caption.split(" ");
+				    var line = "";
+
+				    for (var n = 0; n < words.length; n++) {
+				        var testLine = line + words[n] + " ";
+				        if (testLine.length > MAXIMUM_CHARS_PER_LINE)
+				        {
+				            //  Add a new <tspan> element
+				            var svgTSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+				            svgTSpan.setAttributeNS(null, 'x', x);
+				            svgTSpan.setAttributeNS(null, 'y', y);
+
+				            var tSpanTextNode = document.createTextNode(line);
+				            svgTSpan.appendChild(tSpanTextNode);
+				            svgText.appendChild(svgTSpan);
+
+				            line = words[n] + " ";
+				            y += LINE_HEIGHT;
+				        }
+				        else {
+				            line = testLine;
+				        }
+				    }
+
+				    var svgTSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+				    svgTSpan.setAttributeNS(null, 'x', x);
+				    svgTSpan.setAttributeNS(null, 'y', y);
+
+				    var tSpanTextNode = document.createTextNode(line);
+				    svgTSpan.appendChild(tSpanTextNode);
+
+				    svgText.appendChild(svgTSpan);
+
+				    return svgText;
+				}
+				function drawline(x,y,xd,yd){
+					var line = document.createElementNS(svgNS,'line');
+					line.setAttribute('x1',x);
+					line.setAttribute('y1',y);
+					line.setAttribute('x2',xd);
+					line.setAttribute('y2',yd);
+					line.setAttribute('style','stroke:rgb(255,0,0);stroke-width:2');
+					
+					svg.appendChild(line);
 				
 				}
 				function drawblackline(x,y,xd,yd){
-					var circle = document.createElementNS(svgNS,'line');
-					circle.setAttribute('x1',x);
-					circle.setAttribute('y1',y);
-					circle.setAttribute('x2',xd);
-					circle.setAttribute('y2',yd);
-					circle.setAttribute('style','stroke:rgb(0,0,0);stroke-width:2');
-					svg.appendChild(circle);
+					var line = document.createElementNS(svgNS,'line');
+					line.setAttribute('x1',x);
+					line.setAttribute('y1',y);
+					line.setAttribute('x2',xd);
+					line.setAttribute('y2',yd);
+					line.setAttribute('style','stroke:rgb(0,0,0);stroke-width:2');
+					svg.appendChild(line);
 				
 				}
 				function drawcircle(x,y,nodeid){
