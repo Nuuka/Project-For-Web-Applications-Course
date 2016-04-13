@@ -33,7 +33,7 @@
 		    			Adventure
 		    			<div id="dropDownList">
 		    			<ul>
-		    				<li onclick="location.href = 'nodeTree.jsp';">Community Adventure</li>
+		    				<li onclick="location.href = './NodeTreeServlet';">Community Adventure</li>
 		    				<li>Personal Adventure</li>
 	    				</ul>
 		    		</div>

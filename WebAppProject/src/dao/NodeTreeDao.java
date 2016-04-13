@@ -45,8 +45,8 @@ public class NodeTreeDao {
             conn = DriverManager.getConnection(url + dbName, userName, password);  
             int count = 1;
             while(true){
-            	String[] nodeInfo  = new String[3]; //array to be put in arraylist
-	            pst = conn.prepareStatement("SELECT choice1_id,choice2_id FROM form.ct_nodes where id = ?");
+            	String[] nodeInfo  = new String[4]; //array to be put in arraylist
+	            pst = conn.prepareStatement("SELECT choice1_id,choice2_id,text FROM form.ct_nodes where id = ?");
 	            pst.setInt(1, count);
 	            rs = pst.executeQuery();
 	            if (!rs.next() ) {
@@ -55,6 +55,7 @@ public class NodeTreeDao {
 	            nodeInfo[0] = "" + count;
 	            nodeInfo[1] = rs.getString(1);
 	            nodeInfo[2] = rs.getString(2);
+	            nodeInfo[3] = rs.getString(3);
 
 	            nodes.add(nodeInfo);
 	            count++;

@@ -29,6 +29,7 @@
 				var nodesw = []; // node width
 				var nodeLeft = []; // node left id
 				var nodeRight = []; // node right id
+				var nodeText = [];
 				var ydrop = 50; // amount of pixels to draw next row on
 				var circleWidth = 10;
 				var levels = 0;
@@ -37,7 +38,7 @@
 				<%
 					for(int i = 0; i <(int)request.getAttribute("nodeCount");i++){
 						String[] currentNode = nodes.get(i);
-						out.write("storeNode("+currentNode[0]+","+currentNode[1]+","+currentNode[2]+");");
+						out.write("storeNode("+currentNode[0]+","+currentNode[1]+","+currentNode[2]+",'"+currentNode[3]+"');");
 					}
 				%>
 				
@@ -55,10 +56,10 @@
 				svg.setAttributeNS (null, "viewBox", "0 0 900 900");
 				var svgNS = svg.namespaceURI;
 				loopThrough();
-				drawTextBox(10,10,"test");
+				//drawTextBox(10,10,"test");
 				document.getElementById("center").appendChild(svg);
 			
-				function drawTextBox(x,y,text){
+				function drawTextBox(x,y,nodeid,text){
 					var box = document.createElementNS(svgNS,'rect');
 					var boxWidth = 500;
 					box.setAttribute('width',boxWidth);
@@ -67,63 +68,15 @@
 					box.setAttribute('ry',20);
 					box.setAttribute('x',x);
 					box.setAttribute('y',y);
-					box.setAttribute('style','fill:red;stroke:black;stroke-width:5;opacity:0.5');
-					
-					var svgText = createSVGtext("asdasd", boxWidth/2, y+20);
+					box.setAttribute('style','stroke:black;stroke-width:5;opacity:0.5');
+					box.setAttribute('visibility','hidden');
+					box.setAttribute('id',nodeid+' box');
+					var svgText = createSVGtext(text, x+boxWidth/2, y+20);
 					//text.setAttribute('textLength',200-10);
-					
+					svgText.setAttribute('id',nodeid+' text');
+					svgText.setAttribute('visibility','hidden');
 					svg.appendChild(box);
 					svg.appendChild(svgText);
-				}
-				function createSVGtext(caption, x, y) {
-				    //  This function attempts to create a new svg "text" element, chopping 
-				    //  it up into "tspan" pieces, if the caption is too long
-				    //
-				    var svgText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-				    svgText.setAttributeNS(null, 'x', x);
-				    svgText.setAttributeNS(null, 'y', y);
-				    svgText.setAttributeNS(null, 'font-size', 12);
-				    svgText.setAttributeNS(null, 'fill', '#FFFFFF');         //  White text
-				    svgText.setAttributeNS(null, 'text-anchor', 'middle');   //  Center the text
-
-				    //  The following two variables should really be passed as parameters
-				    var MAXIMUM_CHARS_PER_LINE = 90;
-				    var LINE_HEIGHT = 16;
-
-				    var words = caption.split(" ");
-				    var line = "";
-
-				    for (var n = 0; n < words.length; n++) {
-				        var testLine = line + words[n] + " ";
-				        if (testLine.length > MAXIMUM_CHARS_PER_LINE)
-				        {
-				            //  Add a new <tspan> element
-				            var svgTSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-				            svgTSpan.setAttributeNS(null, 'x', x);
-				            svgTSpan.setAttributeNS(null, 'y', y);
-
-				            var tSpanTextNode = document.createTextNode(line);
-				            svgTSpan.appendChild(tSpanTextNode);
-				            svgText.appendChild(svgTSpan);
-
-				            line = words[n] + " ";
-				            y += LINE_HEIGHT;
-				        }
-				        else {
-				            line = testLine;
-				        }
-				    }
-
-				    var svgTSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-				    svgTSpan.setAttributeNS(null, 'x', x);
-				    svgTSpan.setAttributeNS(null, 'y', y);
-
-				    var tSpanTextNode = document.createTextNode(line);
-				    svgTSpan.appendChild(tSpanTextNode);
-
-				    svgText.appendChild(svgTSpan);
-
-				    return svgText;
 				}
 				function drawline(x,y,xd,yd){
 					var line = document.createElementNS(svgNS,'line');
@@ -154,8 +107,8 @@
 					circle.setAttribute('stroke','green');
 					circle.setAttribute('stroke-width',2);
 					circle.setAttribute('fill','yellow');
-					circle.setAttribute('onmouseover',"evt.target.setAttribute('fill', 'black');");
-					circle.setAttribute('onmouseout',"evt.target.setAttribute('fill', 'yellow');");
+					circle.setAttribute('onmouseover',"document.getElementById('"+nodeid+" box').style.visibility='visible';document.getElementById('"+nodeid+" text').style.visibility='visible';evt.target.setAttribute('fill', 'black');");
+					circle.setAttribute('onmouseout',"document.getElementById('"+nodeid+" box').style.visibility='hidden';document.getElementById('"+nodeid+" text').style.visibility='hidden';evt.target.setAttribute('fill', 'yellow');");
 					circle.setAttribute('xlink:href','www.google.com');
 			
 					svg.appendChild(circle);
@@ -166,6 +119,7 @@
 					var t=document.createTextNode(nodeid);
 					text.appendChild(t);
 					svg.appendChild(text);
+					drawTextBox(x,y,nodeid,nodeText[nodeid]);
 					//<text x="0" y="15" fill="red">I love SVG!</text>
 				}
 				/*
@@ -233,14 +187,64 @@
 					}
 			
 				}
-				function storeNode(nodeid,leftid,rightid){
+				function storeNode(nodeid,leftid,rightid,nodeTexts){
 					nodeLeft[nodeid] = leftid;
 					nodeRight[nodeid] = rightid;
+					nodeText[nodeid] = nodeTexts;
 				}
 				function out(string){
 					document.write(string);
 				}
-				
+				function createSVGtext(caption, x, y) {
+				    //  This function attempts to create a new svg "text" element, chopping 
+				    //  it up into "tspan" pieces, if the caption is too long
+				    //
+				    var svgText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+				    svgText.setAttributeNS(null, 'x', x);
+				    svgText.setAttributeNS(null, 'y', y);
+				    svgText.setAttributeNS(null, 'font-size', 12);
+				    svgText.setAttributeNS(null, 'fill', '#FFFFFF');         //  White text
+				    svgText.setAttributeNS(null, 'text-anchor', 'middle');   //  Center the text
+					caption += '';
+				    //  The following two variables should really be passed as parameters
+				    var MAXIMUM_CHARS_PER_LINE = 90;
+				    var LINE_HEIGHT = 16;
+	
+				    var words = caption.split(" ");
+				    var line = "";
+	
+				    for (var n = 0; n < words.length; n++) {
+				        var testLine = line + words[n] + " ";
+				        if (testLine.length > MAXIMUM_CHARS_PER_LINE)
+				        {
+				            //  Add a new <tspan> element
+				            var svgTSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+				            svgTSpan.setAttributeNS(null, 'x', x);
+				            svgTSpan.setAttributeNS(null, 'y', y);
+	
+				            var tSpanTextNode = document.createTextNode(line);
+				            svgTSpan.appendChild(tSpanTextNode);
+				            svgText.appendChild(svgTSpan);
+	
+				            line = words[n] + " ";
+				            y += LINE_HEIGHT;
+				        }
+				        else {
+				            line = testLine;
+				        }
+				    }
+	
+				    var svgTSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+				    svgTSpan.setAttributeNS(null, 'x', x);
+				    svgTSpan.setAttributeNS(null, 'y', y);
+	
+				    var tSpanTextNode = document.createTextNode(line);
+				    svgTSpan.appendChild(tSpanTextNode);
+	
+				    svgText.appendChild(svgTSpan);
+	
+				    return svgText;
+				}
 			
 				  // Don't use window.onLoad like this in production, because it can only listen to one function.
 				  window.onload = function() {
@@ -253,6 +257,7 @@
 					  // viewportSelector: document.getElementById('demo-tiger').querySelector('#g4') // this option will make library to misbehave. Viewport should have no transform attribute
 					});
 				  };
+				  
 			</script>
 			<a href="ViewNodeServlet?nodeid=1" class="modernButton" style="width:152px">View Nodes </a>
 		</div>
