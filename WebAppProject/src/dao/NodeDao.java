@@ -101,7 +101,7 @@ public class NodeDao {
     	Connection conn = null;  
         PreparedStatement pst = null;  
         ResultSet rs = null; 
-        String[] node = new String[6];
+        String[] node = new String[7];
   
         String url = "jdbc:mysql://localhost:3306/";  
         String dbName = "form";  
@@ -114,7 +114,7 @@ public class NodeDao {
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
             
-            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id, picture_string FROM form.ct_nodes WHERE id = ?");
+            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id, picture_string,numOfViews FROM form.ct_nodes WHERE id = ?");
             pst.setInt(1, nodeid);
   
             rs = pst.executeQuery();
@@ -125,8 +125,14 @@ public class NodeDao {
             node[3] = rs.getString(4);
             node[4] = rs.getString(5);
             node[5] = rs.getString(6);
-            
-            
+            int numOfViews = rs.getInt(7);
+            numOfViews += 1;
+            node[6] = "" + numOfViews;
+            pst.close();
+            pst = conn.prepareStatement("UPDATE form.ct_nodes SET numOfViews = ? WHERE id = ?");
+            pst.setInt(1, numOfViews);
+            pst.setInt(2, nodeid);
+            pst.execute();
             //node[1] = rs.getString("choice1_text");
   
         } catch (Exception e) {  
@@ -156,5 +162,82 @@ public class NodeDao {
         }
         return node;
     }
+	public static void vote(String vote,int nodeid) {
+		Connection conn = null;  
+        PreparedStatement pst = null;  
+        ResultSet rs = null; 
+        String[] node = new String[7];
+  
+        String url = "jdbc:mysql://localhost:3306/";  
+        String dbName = "form";  
+        String driver = "com.mysql.jdbc.Driver";  
+        String userName = "root";  
+        String password = "webapp";
+       
+        try {  
+        	do{
+        		if(vote.equals("up") || vote.equals("down")){
+ 	            }else{
+ 	            	break;
+ 	            }
+        		
+	            Class.forName(driver).newInstance();  
+	            conn = DriverManager.getConnection(url + dbName, userName, password);  
+	  
+	            /*
+	             * Get current amount of votes
+	             */
+	            pst = conn.prepareStatement("SELECT votes FROM form.ct_nodes WHERE id = ?");
+	            pst.setInt(1, nodeid);
+	            rs = pst.executeQuery();
+	            rs.next();
+	            int votes = Integer.parseInt(rs.getString(1));
+	            pst.close();
+	            
+	            /*
+	             * Change amount of votes according to the vote method argument
+	             * then update the database
+	             */
+	            System.out.println(votes);
+	            if(vote.equals("up")){
+ 	            	votes++;
+ 	            }else{
+ 	            	votes--;
+ 	            }
+	            System.out.println(votes);
+	           
+	            
+	            pst = conn.prepareStatement("UPDATE form.ct_nodes SET votes = ? WHERE id = ?");
+	            pst.setInt(1, votes);
+	            pst.setInt(2, nodeid);
+	            pst.execute();
+            }while(false);
+        } catch (Exception e) {  
+            System.out.println(e);  
+        } finally {  
+            if (conn != null) {  
+                try {  
+                    conn.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
+		
+	}
     
 }  

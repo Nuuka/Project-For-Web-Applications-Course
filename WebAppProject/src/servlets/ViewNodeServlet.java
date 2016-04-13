@@ -33,6 +33,9 @@ public class ViewNodeServlet extends HttpServlet{
     	String node[];
     	//The nodeid parameter is located in the url of the webpage
     	String nodeid = request.getParameter("nodeid");
+    	if(request.getParameter("vote") != null){
+    		NodeDao.vote(request.getParameter("vote"),Integer.parseInt(nodeid));
+    	}
     	
     	//retrieves the node from the server by id and sets the nodes attributes in the webpage
     	node = NodeDao.getNode(Integer.parseInt(nodeid));
@@ -42,6 +45,7 @@ public class ViewNodeServlet extends HttpServlet{
     	request.setAttribute("choice1_id", node[3]);
     	request.setAttribute("choice2_id", node[4]);
     	request.setAttribute("nodePictureString", node[5]);
+    	request.setAttribute("numOfViews", node[6]);
     	
     	HttpSession session = request.getSession(false);  
         if(session!=null)  
