@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
 <html>  
 	<head>  
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
@@ -35,9 +34,11 @@
 					<td style="text-align:right;padding-right:10px;">Email</td>
 					<td style="color:#d35400;"><%=session.getAttribute("email")%></td>
 				</tr>
+				<tr>
+					<td style="text-align:right;padding-right:10px;">Change Picture</td>
+					<td>Choose a file: <input type="file" id="filePicker"></td>
+				</tr>
 			</table>
-			<label for="filePicker">Choose a file:</label><br>
-        	<input type="file" id="filePicker">
         	<form action="AccountServlet" method="post">
 				<input id ="pictureText" type="hidden" name="pictureText" value="">
 				<input id ="userId" type="hidden" name="userId" value="">
@@ -79,12 +80,7 @@
 				  image.src = 'data:image/png;base64,'+ t;
 				}//window.location = "AccountServlet?pictureText=test";
 			</script>
-			<div id="google_translate_element"></div><script type="text/javascript">
-			function googleTranslateElementInit() {
-			  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-			}
-			</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        
+
 		</div>
 		
 		<%@include file="header/header.jsp" %>

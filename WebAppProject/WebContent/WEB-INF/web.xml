@@ -18,6 +18,10 @@
         <servlet-class>servlets.NewNodeServlet</servlet-class>  
     </servlet>
     <servlet>  
+        <servlet-name>editNode</servlet-name>  
+        <servlet-class>servlets.EditNodeServlet</servlet-class>  
+    </servlet>
+    <servlet>  
         <servlet-name>viewNode</servlet-name>  
         <servlet-class>servlets.ViewNodeServlet</servlet-class>  
     </servlet> 
@@ -42,6 +46,10 @@
         <servlet-name>newNode</servlet-name>  
         <url-pattern>/newNodeServlet</url-pattern>  
     </servlet-mapping>  
+    <servlet-mapping>  
+        <servlet-name>editNode</servlet-name>  
+        <url-pattern>/EditNodeServlet</url-pattern>  
+    </servlet-mapping> 
    	<servlet-mapping>  
         <servlet-name>viewNode</servlet-name>  
         <url-pattern>/ViewNodeServlet</url-pattern>  

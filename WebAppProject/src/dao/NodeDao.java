@@ -101,7 +101,7 @@ public class NodeDao {
     	Connection conn = null;  
         PreparedStatement pst = null;  
         ResultSet rs = null; 
-        String[] node = new String[7];
+        String[] node = new String[8];
   
         String url = "jdbc:mysql://localhost:3306/";  
         String dbName = "form";  
@@ -114,7 +114,7 @@ public class NodeDao {
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
             
-            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id, picture_string,numOfViews FROM form.ct_nodes WHERE id = ?");
+            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id, picture_string, numOfViews, isBlocked, user_id FROM form.ct_nodes WHERE id = ?");
             pst.setInt(1, nodeid);
   
             rs = pst.executeQuery();
@@ -125,14 +125,34 @@ public class NodeDao {
             node[3] = rs.getString(4);
             node[4] = rs.getString(5);
             node[5] = rs.getString(6);
+            
             int numOfViews = rs.getInt(7);
+            if(rs.getInt(8) == 1){
+            	node[0] = "This Story has be blocked by an Admin.";
+            	node[1] = node[0];
+            	node[2] = node[1];
+            	node[5] = "";
+            }
+            int temp = Integer.parseInt(rs.getString(9));
+            System.out.println(temp);
             numOfViews += 1;
             node[6] = "" + numOfViews;
             pst.close();
+            
+            
             pst = conn.prepareStatement("UPDATE form.ct_nodes SET numOfViews = ? WHERE id = ?");
             pst.setInt(1, numOfViews);
             pst.setInt(2, nodeid);
             pst.execute();
+            pst.close();
+            
+            
+            pst = conn.prepareStatement("SELECT user FROM login WHERE id = ?");
+            pst.setInt(1,temp);
+            rs.close();
+            rs = pst.executeQuery();
+            rs.next();
+            node[7] = rs.getString(1);
             //node[1] = rs.getString("choice1_text");
   
         } catch (Exception e) {  
@@ -238,6 +258,110 @@ public class NodeDao {
             }  
         }
 		
+	}
+	public static void blockNode(int nodeid,boolean isBlocked) {
+		Connection conn = null;  
+        PreparedStatement pst = null;  
+        ResultSet rs = null; 
+        String[] node = new String[7];
+        int isBlockedInt;
+  
+        String url = "jdbc:mysql://localhost:3306/";  
+        String dbName = "form";  
+        String driver = "com.mysql.jdbc.Driver";  
+        String userName = "root";  
+        String password = "webapp";
+       
+        try {  
+            Class.forName(driver).newInstance();  
+            conn = DriverManager.getConnection(url + dbName, userName, password);  
+            if(isBlocked == true){
+            	isBlockedInt = 1;
+            }else{
+            	isBlockedInt = 0;
+            }
+            pst = conn.prepareStatement("UPDATE form.ct_nodes SET isBlocked = ? WHERE id = ?");
+            pst.setInt(1, isBlockedInt);
+            pst.setInt(2, nodeid);
+            pst.execute();
+        } catch (Exception e) {  
+            System.out.println(e);  
+        } finally {  
+            if (conn != null) {  
+                try {  
+                    conn.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
+		
+	}
+	public static void editNode(String nodeid, String pText, String choice1, String choice2, String pictureText) {
+        Connection conn = null;  
+        PreparedStatement pst = null;  
+        ResultSet rs = null;  
+        
+        //Variables for connecting to database
+        String url = "jdbc:mysql://localhost:3306/";  
+        String dbName = "form";  
+        String driver = "com.mysql.jdbc.Driver";  
+        String userName = "root";  
+        String password = "webapp";  
+        
+        try {  
+            Class.forName(driver).newInstance();  
+            conn = DriverManager.getConnection(url + dbName, userName, password);  
+  
+            
+            pst = conn.prepareStatement("UPDATE form.ct_nodes SET text=?,choice1_text=?,choice2_text=?,picture_string=? WHERE id=?");
+            pst.setString(1, pText);  
+            pst.setString(2, choice1);
+            pst.setString(3, choice2);
+            pst.setString(4, pictureText);
+            pst.setInt(5, Integer.parseInt(nodeid));
+  
+            pst.execute();
+  
+        } catch (Exception e) {  
+            System.out.println(e);  
+        } finally {  
+            if (conn != null) {  
+                try {  
+                    conn.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if (pst != null) {  
+                try {  
+                    pst.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if (rs != null) {  
+                try {  
+                    rs.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }  
 	}
     
 }  

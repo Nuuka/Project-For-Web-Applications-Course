@@ -12,6 +12,7 @@ html, body
  html {
  position: relative;
  min-height: 100%;
+ height: 100%;
 }
 
 body{
@@ -44,8 +45,23 @@ h3{
     height: 60px;
     border:0px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	
-
+}
+#headerAdmin{
+	position:fixed;
+    background: black; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#e74c3c, #c0392b); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#e74c3c, #c0392b); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#e74c3c, #c0392b); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#e74c3c, #c0392b); /* Standard syntax */
+    width: 100%;
+    color: #FFF;
+    text-shadow: 1px 1px 1px #555;
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    height: 60px;
+    border:0px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #center {
 	bottom: 0;
@@ -58,7 +74,7 @@ h3{
     padding-right: 50px;
     width: calc(70% - 100px);
     background-color: white;
-    height:  calc(100% - 61px);
+    min-height: calc(100% - 111px);
     float: left;/*
     background-image: url("http://www.puyrondcamping.com/wp-content/uploads/2014/12/ladybird-webpage-background3.jpg");
     background-size:     cover;                    
@@ -69,13 +85,20 @@ h3{
     clear: both;
     position: relative;
     left: 0;
-    bottom 0;
-    background-color:black;
+    bottom: 0;
+    background: black; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#1A1A1A, #0A0A0A); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#1A1A1A, #0A0A0A); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#1A1A1A, #0A0A0A); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#1A1A1A, #0A0A0A); /* Standard syntax */
     height: 50px;
     width: 100%;
     margin-top: -3em;
 }
 #header table{
+    color:white;
+}
+#headerAdmin table{
     color:white;
 }
 .option:hover{
@@ -111,6 +134,12 @@ h3{
 	background-color:#666;
 }
  
+.nodeTreeCircle{
+	cursor:default;
+}
+.nodeTreeCircle:hover{
+	cursor:pointer;
+}
 .button {
     box-shadow:inset 0px 34px 0px -15px #ffffff;
     background-color:#f0f0f0;

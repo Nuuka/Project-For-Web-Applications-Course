@@ -16,11 +16,14 @@
 		<%java.util.List<String[]> nodes = (java.util.List<String[]>)request.getAttribute("nodeTreeObject");%>
 		
 		<div id="center">
+			<p>Brown Circles = This "node" is completely finished and is now a full branch of the tree.<br />
+			Yellow Circles = This "node" is half finished and only has one branch.<br />
+			Green Circles = This "node" is brand new and has no branches coming from it.</p>
 			<script>
 				//var c = document.getElementById("myCanvas");
 				//var ctx = c.getContext("2d");
 				//ctx.scale(0.4, 0.4);
-				var x = 400;
+				var x = 5000;
 				var y = 200;
 				var w = (x/2);
 				var test;
@@ -56,8 +59,8 @@
 				svg.setAttributeNS (null, "width", 0);
 				//svg.setAttributeNS (null, "height", 500);
 				svg.setAttributeNS (null, "id", "viewNodeBox");
-				svg.setAttributeNS (null, "style", "display: inline; width: 99.5%; min-width: inherit; max-width: inherit; height: 50%;border-style:solid;border-width:1px;border-color:black;");
-				svg.setAttributeNS (null, "viewBox", "0 0 900 900");
+				svg.setAttributeNS (null, "style", "display: inline; width: 99.5%; min-width: inherit; max-width: inherit; height: 500px;border-style:solid;border-width:1px;border-color:black;");
+				svg.setAttributeNS (null, "viewBox", "0 0 "+(x*2)+" 900");
 				var svgNS = svg.namespaceURI;
 				/*Cosmetic Things*/
 				drawline(x,y,x,y+150); //trunk
@@ -100,7 +103,7 @@
 				    svgText.setAttributeNS(null, 'text-anchor', 'middle');   //  Center the text
 					caption += '';
 				    //  The following two variables should really be passed as parameters
-				    var MAXIMUM_CHARS_PER_LINE = 90;
+				    var MAXIMUM_CHARS_PER_LINE = 60;
 				    var LINE_HEIGHT = 16;
 
 				    var words = caption.split(" ");
@@ -170,6 +173,7 @@
 					circle.setAttribute('stroke','black');
 					circle.setAttribute('stroke-width',1);
 					circle.setAttribute('fill','#663300');
+					circle.setAttribute('class','nodeTreeCircle');
 					if(nodeLeft[nodeid] == 0 || nodeRight[nodeid] == 0){
 						circle.setAttribute('fill','yellow');
 					}
@@ -179,6 +183,8 @@
 					
 					circle.setAttribute('onmouseover',"document.getElementById('"+nodeid+" box').style.visibility='visible';document.getElementById('"+nodeid+" text').style.visibility='visible';");
 					circle.setAttribute('onmouseout',"document.getElementById('"+nodeid+" box').style.visibility='hidden';document.getElementById('"+nodeid+" text').style.visibility='hidden';");
+					circle.setAttribute('onclick',"location.href = './ViewNodeServlet?nodeid="+nodeid+"';");
+					
 					circle.setAttribute('xlink:href','www.google.com');
 			
 					circleObjects.push(circle);
@@ -201,7 +207,7 @@
 				function loopThrough(){
 					drawnodebranch(1);
 					var numOfUndefined = 0; //number of undefined in a row
-					var maxTries = 50;
+					var maxTries = 100;
 					for (i = 2;; i++){
 						if(nodeLeft[i] == undefined){
 							numOfUndefined += 1;

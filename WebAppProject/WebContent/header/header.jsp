@@ -1,14 +1,15 @@
 <div id="black" onclick="hideLogin()" style="
-											position:fixed;
-											z-index: 2;
-											box-shadow: 20px 20px 10px #888888;
-											visibility: hidden;
-											height:100%;
-											width:100%;
-											background-color:black;
-											top: 0px;
-											right: 0px;
-											opacity: 0.5;">&nbsp;</div>
+	position:fixed;
+	z-index: 2;
+	box-shadow: 20px 20px 10px #888888;
+	visibility: hidden;
+	height:100%;
+	width:100%;
+	background-color:black;
+	top: 0px;
+	right: 0px;
+	opacity: 0.5;">&nbsp;
+</div>
 <div id="popUpBlock" style="z-index: 3;visibility: hidden;left:calc(50% - 175px);position: fixed;">
 	<%@include file="../includePages/login.jsp" %>
 </div>
@@ -22,7 +23,20 @@
 	    document.getElementById("popUpBlock").style.visibility='hidden';
 	}
 </script>
-<div id="header">
+
+<%
+if(session.getAttribute("accType")!= null){
+	if(session.getAttribute("accType").equals("admin")){
+		out.println("<div id=\"headerAdmin\">");
+	}else{
+		out.println("<div id=\"header\">");
+	}
+}else{
+	out.println("<div id=\"header\">");
+}
+
+%>
+
     <!-- <form action="loginServlet" method="post"> -->
 	    <table width="70%" style="margin-left:15%;text-align:center" height="63px">  
 	    	<tr>
@@ -61,7 +75,9 @@
 
 
  <div id="footer">
-   <div id="google_translate_element"></div>
+	<div style="padding-top:25px;margin-top:0px;color:white;">
+   		<div id="google_translate_element"></div>
+   	</div>
    <script type="text/javascript">
    function googleTranslateElementInit() {
      	new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
@@ -69,6 +85,11 @@
    }
    </script>
    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-   
+      <style>
+		div#google_translate_element div.goog-te-gadget-simple{background-color:black;}
+    	div#google_translate_element div.goog-te-gadget-simple a.goog-te-menu-value span{color:white}
+    	div#google_translate_element div.goog-te-gadget-simple a.goog-te-menu-value span:hover{color:#ffffff}
+
+	</style>
 </div>
 

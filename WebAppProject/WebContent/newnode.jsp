@@ -8,7 +8,7 @@
     <body>  
     <div id="center">
         <div class="loginTitle">
-            <h3 style="line-height: 175px">Post Story</h3>
+            <h3>Post Story</h3>
         </div>
         <!--Form with option to post the story and the users 2 choices (overide width to default to center the textarea)-->
          <form action="newNodeServlet" method="post"  id="postStoryForm"> 
@@ -23,8 +23,8 @@
 					image.src = 'data:image/png;base64,'+ '<%=session.getAttribute("pictureString2")%>';
 				}
 			</script>
-			
-            <label for="msg"  >Story:</label><br/>
+			<br/>
+            <p style="text-align:left;padding:8px;margin:0px;">Story:</p>
             <!--Main text area for the users Story-->
             <textarea name="postText" id="msg" style="resize:both" rows="8" cols="72"></textarea><br/>
             <!--Table to hold the 2 chocie text boxes-->

@@ -1,7 +1,8 @@
 package servlets;  
   
-import java.io.IOException;  
-  
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.RequestDispatcher;  
 import javax.servlet.ServletException;  
 import javax.servlet.http.HttpServlet;  
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.LoginDao;
 import dao.NodeDao;   
  
 /**
@@ -46,6 +48,8 @@ public class ViewNodeServlet extends HttpServlet{
     	request.setAttribute("choice2_id", node[4]);
     	request.setAttribute("nodePictureString", node[5]);
     	request.setAttribute("numOfViews", node[6]);
+    	request.setAttribute("nodeCreator", node[7]);
+    	request.setAttribute("CurrentNode", nodeid);
     	
     	HttpSession session = request.getSession(false);  
         if(session!=null)  
@@ -54,5 +58,25 @@ public class ViewNodeServlet extends HttpServlet{
     	//TODO: Create a if to check if the node came back null if it did forward to an error page.
     	RequestDispatcher rd=request.getRequestDispatcher("nodeview.jsp");    
         rd.forward(request,response);  
+    }
+    
+    
+    public void doPost(HttpServletRequest request, HttpServletResponse response)    
+            throws ServletException, IOException {  
+    	
+    	response.setContentType("text/html");    
+        PrintWriter out = response.getWriter();    
+        String isBlocked = request.getParameter("isBlocked");  
+        String nodeid = request.getParameter("nodeid");   
+        if(isBlocked.equals("true")){
+        	NodeDao.blockNode(Integer.parseInt(nodeid),true);
+        }else{
+        	NodeDao.blockNode(Integer.parseInt(nodeid),false);
+        }
+        request.setAttribute("node",nodeid);
+        RequestDispatcher rd=request.getRequestDispatcher("./includePages/redirectToNode.jsp");    
+        rd.forward(request,response);      
+  
+        out.close();    
     }
 }   
