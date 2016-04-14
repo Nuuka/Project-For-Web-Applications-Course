@@ -101,7 +101,7 @@ public class NodeDao {
     	Connection conn = null;  
         PreparedStatement pst = null;  
         ResultSet rs = null; 
-        String[] node = new String[8];
+        String[] node = new String[9];
   
         String url = "jdbc:mysql://localhost:3306/";  
         String dbName = "form";  
@@ -114,7 +114,7 @@ public class NodeDao {
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
             
-            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id, picture_string, numOfViews, isBlocked, user_id FROM form.ct_nodes WHERE id = ?");
+            pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id, picture_string, numOfViews, isBlocked, user_id, votes FROM form.ct_nodes WHERE id = ?");
             pst.setInt(1, nodeid);
   
             rs = pst.executeQuery();
@@ -137,6 +137,7 @@ public class NodeDao {
             System.out.println(temp);
             numOfViews += 1;
             node[6] = "" + numOfViews;
+            node[8] = rs.getString(10);
             pst.close();
             
             

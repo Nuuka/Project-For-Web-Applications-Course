@@ -6,7 +6,7 @@
        		<input id="choice1 text" type="hidden" name="choice1 text" value="">
        		<input id="choice2 text" type="hidden" name="choice2 text" value="">
        		<input id="pictureText" type="hidden" name="pictureText" value="">
-           	<input id="submitButton" type="submit" name="submit" value="Edit this node">
+           	<input class="modernButton" id="submitButton" type="submit" name="submit" value="Edit this node" style="width:100%;margin-left:auto;margin-right:auto;">
         </form>
         <script>
         	document.getElementById('nodeid').setAttribute("value","<%=request.getAttribute("CurrentNode")%>");

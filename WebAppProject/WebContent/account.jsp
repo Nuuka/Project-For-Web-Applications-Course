@@ -15,9 +15,9 @@
 		<div id="center">
 			<%//@include file="includePages/nodeTree.jsp" %>
 			<p>&nbsp;</p>
-			<table border="1" width="100%">
+			<table width="100%">
 				<tr>
-					<td width="50%"><img id="img-circle" style="width:200px;height:200px;" src="">
+					<td width="50%" style="text-align:right;padding-right:10%;"><img id="img-circle" style="width:200px;height:200px;" src="">
 						<script>var image =  document.getElementById('img-circle');
 						image.src = 'data:image/png;base64,'+ '<%=session.getAttribute("pictureString")%>';</script></td>
 					<td width="50%"><h2>Hello <%=session.getAttribute("loginAccount")%>!!</h2></td>
@@ -42,7 +42,7 @@
         	<form action="AccountServlet" method="post">
 				<input id ="pictureText" type="hidden" name="pictureText" value="">
 				<input id ="userId" type="hidden" name="userId" value="">
-				<input id = "submitButton" type="submit" name="submit" value=submit disabled>
+				<input class="modernButtonNoHover" id = "submitButton" type="submit" name="submit" value="Change Picture" disabled style="width:100%;margin-left:auto;margin-right:auto;">
 			</form>
         	<script>
 	        	

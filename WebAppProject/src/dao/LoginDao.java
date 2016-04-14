@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;  
 import java.sql.PreparedStatement;  
 import java.sql.ResultSet;  
-import java.sql.SQLException;  
+import java.sql.SQLException;
+
+import bCrypt.BCrypt;  
  
 /**
  * This class is used to connect to the database and verify login info.
@@ -35,7 +37,7 @@ public class LoginDao {
         String driver = "com.mysql.jdbc.Driver";  
         String userName = "root";  
         String password = "webapp"; 
-        
+        String hashed = BCrypt.hashpw(pass, BCrypt.gensalt());
         try {  
             Class.forName(driver).newInstance();  
             conn = DriverManager.getConnection(url + dbName, userName, password);  

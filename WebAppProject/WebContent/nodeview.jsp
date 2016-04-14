@@ -9,17 +9,22 @@
 
     <div id="center">
 	    
-    	<p width="100%" style="color:#bdc3c7;border:0px;margin:0px;padding:0px;text-align:right;">Number of views: <%=request.getAttribute("numOfViews")%><br/>
-    	Created by: <%=request.getAttribute("nodeCreator")%></p>
+    	<p width="100%" style="color:#bdc3c7;border:0px;margin:0px;padding:0px;text-align:right;"><br />Number of views: <%=request.getAttribute("numOfViews")%><br/>
+    	Created by: <%=request.getAttribute("nodeCreator")%><br />
+    	Current Vote: <%=request.getAttribute("votes")%>
+    	
+    	</p>
+    	
+    	
         <p width="100%" style="border:0px;margin:0px;padding:0px;text-align:right;">
 	        <img id="upvote" width="50px" height="50px" src="./images/upvote.png" onclick="document.getElementById('downvote').setAttribute('style','opacity:0.5; -moz-opacity:0.5; filter:alpha(opacity=50)');
 	        document.getElementById('upvote').setAttribute('style','opacity:1.0; -moz-opacity:1.0; filter:alpha(opacity=100)');
-	        document.getElementById('choice 1').setAttribute('href','ViewNodeServlet?nodeid='+${choice1_id}+'&vote=up');
-	        document.getElementById('choice 2').setAttribute('href','ViewNodeServlet?nodeid='+${choice2_id}+'&vote=up');">
+	        document.getElementById('choice 1').setAttribute('href','ViewNodeServlet?nodeid='+${choice1_id}+'&vote=up'+'&currentNode='+<%=request.getAttribute("CurrentNode")%>);
+	        document.getElementById('choice 2').setAttribute('href','ViewNodeServlet?nodeid='+${choice2_id}+'&vote=up'+'&currentNode='+<%=request.getAttribute("CurrentNode")%>);">
 	        <img id="downvote" width="50px" height="50px" src="./images/downvote.png" onclick="document.getElementById('upvote').setAttribute('style','opacity:0.5; -moz-opacity:0.5; filter:alpha(opacity=50)');
 	        document.getElementById('downvote').setAttribute('style','opacity:1.0; -moz-opacity:1.0; filter:alpha(opacity=100)');
-	        document.getElementById('choice 1').setAttribute('href','ViewNodeServlet?nodeid='+${choice1_id}+'&vote=down');
-	        document.getElementById('choice 2').setAttribute('href','ViewNodeServlet?nodeid='+${choice2_id}+'&vote=down');">
+	        document.getElementById('choice 1').setAttribute('href','ViewNodeServlet?nodeid='+${choice1_id}+'&vote=down'+'&currentNode='+<%=request.getAttribute("CurrentNode")%>);
+	        document.getElementById('choice 2').setAttribute('href','ViewNodeServlet?nodeid='+${choice2_id}+'&vote=down'+'&currentNode='+<%=request.getAttribute("CurrentNode")%>);">
         </p>
         <div class="loginTitle">
             <h3 style="line-height: 30px;color:black;">Here's what this node says...</h3>
