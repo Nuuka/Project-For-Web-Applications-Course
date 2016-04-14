@@ -4,6 +4,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
+     	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
         <title>Login Application</title>  
         <link rel="stylesheet" type="text/css" href="main.css">
     </head>
@@ -22,12 +28,10 @@
                 //if the passwords match the background color chnages to green
                 //if they don't match it will turn red
                 if(pass1.value == pass2.value){
-               
                     pass2.style.backgroundColor = matchColor;
                     message.style.color = matchColor;
                     message.innerHTML = "Passwords Match!"
                 }else{
-                   
                     pass2.style.backgroundColor = noMatchColor;
                     message.style.color = noMatchColor;
                     message.innerHTML = "Passwords Do Not Match!"
@@ -36,44 +40,46 @@
     </script>
     <body>
     <!--Basic register form only asking for username and password-->
-    <div class="header">          
-            <a href="index.jsp" style="text-decoration:none; color:white"><h1 style="text-align:center ">MiMoJo</h1></a>  
     </div>
         <!--Main frame-->
-        <div class="registerBlock" >
+        <div id="center">
             <div class="loginTitle">
                 <h3 style="line-height: 175px">Register</h3>
             </div>
             <!--Form for user to input their username and password-->
-            <form action="RegisterServlet" method="post" style="margin-left:70px">
-                <label for="userID" >First Name</label>
-                <input type="text" name="firstName"><br/><br/>
- 
-                <label for="userID" >Last Name</label>
-                <input type="text" name="lastName"><br/><br/>
- 
-                <label for="userID" >Email</label>
-                <input type="text" name="email"><br/><br/>
- 
-                <label for="userID" >User ID</label>
-                <input type="text" name="username"><br/>
- 
-                <label for="password" style="margin-top: 1em">Password</label>
-                <input type="password" name="userpass" id="pass1"><br/><br/>
- 
-                <label for="password2">Confirm Password</label>
-                <!--Calls on javascript fuction to check if the passwords are a match-->
-                <input type="password" name="ConfirmPassword" id="pass2" onkeyup="checkPass(); return false">
-                <span id="confirmMessage" class="confirmMessage" style="margin-left: 95px"></span><br/><br/>
- 
-                <input type="submit" value="Create Account" style="margin-left: 150px">
-                <% if(session.getAttribute("createStatus") == "failed"){
-                    out.println("<br /><span style=\"color:#e74c3c\">Account already in use!</span>");
-                }
-                 
-                %>
-               
-            </form>
+            <div style="text-align:center;margin-right:auto;margin-left:auto;">
+	            <form action="RegisterServlet" method="post" style="margin-left:70px">
+	                <label for="userID" >First Name</label>
+	                <input type="text" name="firstName"><br/><br/>
+	 
+	                <label for="userID" >Last Name</label>
+	                <input type="text" name="lastName"><br/><br/>
+	 
+	                <label for="userID" >Email</label>
+	                <input type="text" name="email"><br/><br/>
+	 
+	                <label for="userID" >User ID</label>
+	                <input type="text" name="username"><br/>
+	 
+	                <label for="password" style="margin-top: 1em">Password</label>
+	                <input type="password" name="userpass" id="pass1"><br/><br/>
+	 
+	                <label for="password2">Confirm Password</label>
+	                <!--Calls on javascript fuction to check if the passwords are a match-->
+	                <input type="password" name="ConfirmPassword" id="pass2" onkeyup="checkPass(); return false">
+	                <br />
+	                <span id="confirmMessage" class="confirmMessage" style="margin-left: 95px"></span><br/><br/>
+	 
+	                <input type="submit" value="Create Account" style="margin-left: 150px">
+	                <% if(session.getAttribute("createStatus") == "failed"){
+	                    out.println("<br /><span style=\"color:#e74c3c\">Account already in use!</span>");
+	                }
+	                 
+	                %>
+	               
+	            </form>
+            </div>
         </div>
+        <%@include file="header/header.jsp" %>
     </body>  
 </html>

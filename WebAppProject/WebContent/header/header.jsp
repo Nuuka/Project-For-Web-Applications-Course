@@ -43,20 +43,20 @@ if(session.getAttribute("accType")!= null){
 	    		<td onclick="location.href = 'index.jsp';" width="10%" style="text-align:left">
 					<img src="logo.png" alt="logo" width="42" height="42">
 				</td>
-	    		<td class="option" width="10%" style="cursor:default">
+	    		<td class="option" width="10%" style="cursor:pointer" onclick="location.href = './NodeTreeServlet';">
 		    			Adventure
-		    			<div id="dropDownList">
+		    			<!-- <div id="dropDownList">
 		    			<ul>
 		    				<li onclick="location.href = './NodeTreeServlet';">Community Adventure</li>
 		    				<li>Personal Adventure</li>
-	    				</ul>
+	    				</ul>-->
 		    		</div>
     			</td>
-    			<td class="option" width="10%" id="pop" style="cursor:pointer">
-		    		Popular
+    			<td class="option" width="10%" id="pop" style="cursor:pointer" onclick="location.href = './stats.jsp';">
+		    		Statistics
     			</td>
-    			<td class="option" width="10%" id="stat" style="cursor:pointer">
-		    		Stats
+    			<td class="option" width="10%" id="stat" style="cursor:pointer" onclick="location.href = './about.jsp';">
+		    		About
     			</td>
     			<td width="50%">
 		    		&nbsp;
@@ -78,6 +78,7 @@ if(session.getAttribute("accType")!= null){
 	<div style="padding-top:25px;margin-top:0px;color:white;">
    		<div id="google_translate_element"></div>
    	</div>
+   	
    <script type="text/javascript">
    function googleTranslateElementInit() {
      	new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');

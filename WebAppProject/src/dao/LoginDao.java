@@ -25,8 +25,7 @@ public class LoginDao {
 	 */
     public static int validate(String name, String pass) {          
         
-    	int id = 0;
-        
+        int isSuccess = 0;
         Connection conn = null;  
         PreparedStatement pst = null;  
         ResultSet rs = null;  
@@ -37,22 +36,29 @@ public class LoginDao {
         String driver = "com.mysql.jdbc.Driver";  
         String userName = "root";  
         String password = "webapp"; 
-        String hashed = BCrypt.hashpw(pass, BCrypt.gensalt());
+        
         try {  
             Class.forName(driver).newInstance();  
             conn = DriverManager.getConnection(url + dbName, userName, password);  
             
             //The statement to be executed, searches for entries matching both the username and password
-            pst = conn.prepareStatement("select * from login where user=? and password=?");
+            pst = conn.prepareStatement("select * from login where user=?");
             pst.setString(1, name);  
-            pst.setString(2, pass);  
-  
+            
+            
+            
             //Executes the statement and returns a result set
             rs = pst.executeQuery();  
             //next() will return false if there is no results and true if there are.
-            if(rs.next()){
-            	id = rs.getInt(1);
-            }
+            rs.next();
+            int accountId = rs.getInt(1);
+            String dbPass = rs.getString(3);
+            System.out.println(dbPass);
+            
+            if (BCrypt.checkpw(pass, dbPass))
+            	isSuccess = accountId;
+            else
+            	isSuccess = 0;
   
         } catch (Exception e) {  
             System.out.println(e);  
@@ -78,8 +84,8 @@ public class LoginDao {
                     e.printStackTrace();  
                 }  
             }  
-        }  
-        return id;  
+        }   
+        return isSuccess;
     }  
     
     public static String[] getAccountInfo(int id) {          

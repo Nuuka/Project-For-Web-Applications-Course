@@ -54,7 +54,7 @@ public class RegisterDao {
             	pst = conn.prepareStatement("INSERT INTO `form`.`login` (`user`, `password`,`firstName`,`lastName`,`email`,`accountType`) VALUES (?, ?, ?, ?, ?, \"basic\")"); 
 	
 	            pst.setString(1, name);  
-	            pst.setString(2, pass);
+	            pst.setString(2, hashed);
 	            pst.setString(3, firstName);  
 	            pst.setString(4, lastName);  
 	            pst.setString(5, email);  
