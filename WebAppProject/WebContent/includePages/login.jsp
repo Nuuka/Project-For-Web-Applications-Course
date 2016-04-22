@@ -1,3 +1,8 @@
+<!--
+This page is shown when the user attempts to log in
+
+ -->
+
 <div id="loginBlock" >
     <div class="loginTitle">
         <h3 style="line-height: 175px">Login</h3>

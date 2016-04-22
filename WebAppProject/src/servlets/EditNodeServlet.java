@@ -22,7 +22,7 @@ public class EditNodeServlet extends HttpServlet{
     	response.setContentType("text/html");      
     	String nodeid = request.getParameter("nodeid");  
     	
-    	
+    	// if updating the node
         if(request.getParameter("update") != null){
         	String pText = request.getParameter("postText");    
             String choice1 = request.getParameter("choice1");
@@ -31,7 +31,7 @@ public class EditNodeServlet extends HttpServlet{
         	NodeDao.editNode(nodeid,pText,choice1,choice2,pictureText);
         	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
             rd.forward(request,response); 
-        }else{  
+        }else{  // if just getting information about the node
             String choice1id = request.getParameter("choice1 id");   
             String choice2id = request.getParameter("choice2 id");   
             String text = request.getParameter("text");   

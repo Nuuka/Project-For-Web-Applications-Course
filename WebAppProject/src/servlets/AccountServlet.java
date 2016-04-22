@@ -19,12 +19,15 @@ public class AccountServlet extends HttpServlet{
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)    
             throws ServletException, IOException {
+		// set pictureText to the given string
 		String pictureText = request.getParameter("pictureText");
+		// set id to the given id
 		String id = request.getParameter("userId");
+		// update the photo to the new string
 		AccountDao.updatePhoto(id, pictureText);
-		System.out.println("ID:" + id);
 		HttpSession session = request.getSession(false);  
         session.setAttribute("pictureString", pictureText);
+        // redirect back to account page
 		RequestDispatcher rd=request.getRequestDispatcher("account.jsp");    
         rd.forward(request,response);  
 	}

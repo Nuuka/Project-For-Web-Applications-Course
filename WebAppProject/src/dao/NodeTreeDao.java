@@ -14,18 +14,8 @@ import java.util.List;
  * @version 1.0
  */
 public class NodeTreeDao { 
-	/**
-	 * Connects to the database and adds a new node to the nodes table.
-	 * 
-	 * @version 1.0
-	 * @param text The main text of the new node
-	 * @param choice1 The text in choice1
-	 * @param choice2 The text in choice2
-	 * @param node_id The id of the new node, this was for debugging purposes only and will be removed later
-	 * @param pictureText 
-	 * @param choice1_id The id of the node connecting to choice1, this was for debugging purposes only and will be removed later
-	 * @param choice2_id The id of the node connecting to choice2, this was for debugging purposes only and will be removed later
-	 * @return True if the function was successful, otherwise false
+	/*
+	 * Connects to the database and grabs all the information about the entire node tree
 	 */
     public static List<String[]> generateTree() {          
         Connection conn = null;  

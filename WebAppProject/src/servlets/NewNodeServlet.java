@@ -47,11 +47,11 @@ public class NewNodeServlet extends HttpServlet{
         System.out.println(nodeChoice);
   
         //Enters the node to the database
-        if(NodeDao.validate(pText, choice1, choice2, node_id, userid, nodeChoice,pictureText)){
-        	request.setAttribute("node", node_id);
-        	RequestDispatcher rd=request.getRequestDispatcher("./includePages/redirectToNode.jsp");  
-            rd.forward(request,response);      
-        }       
+        NodeDao.newNode(pText, choice1, choice2, node_id, userid, nodeChoice,pictureText);
+    	request.setAttribute("node", node_id);
+    	RequestDispatcher rd=request.getRequestDispatcher("./includePages/redirectToNode.jsp");  
+        rd.forward(request,response);      
+        
     }
     
     /**

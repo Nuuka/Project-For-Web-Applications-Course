@@ -12,13 +12,13 @@ import bCrypt.BCrypt;
  * This class is used to connect to the database and verify login info.
  * 
  * @author Joey MacLean
- * @version 1.0
+ * @version 1.2
  */
 public class LoginDao {
 	/**
 	 * Connects to the database and validates the login information.
 	 * 
-	 * @version 1.0
+	 * @version 1.2
 	 * @param name The username to validate
 	 * @param pass The password linked to the username
 	 * @return True if the username and password was found, otherwise false

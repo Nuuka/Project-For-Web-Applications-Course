@@ -30,7 +30,7 @@ public class NodeTreeServlet  extends HttpServlet{
         if(session!=null)  
         	 session.setAttribute("node_id", request.getParameter("nodeid"));
     	
-    	//TODO: Create a if to check if the node came back null if it did forward to an error page.
+    	
     	RequestDispatcher rd=request.getRequestDispatcher("nodeTree.jsp");    
         rd.forward(request,response);  
     }

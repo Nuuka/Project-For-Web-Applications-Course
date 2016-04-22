@@ -19,13 +19,15 @@ public class AccountDao {
 	    String userName = "root";  
 	    String password = "webapp";  
 	    
-	    try {  
+	    try {  // try to connect
 	        Class.forName(driver).newInstance();  
 	        conn = DriverManager.getConnection(url + dbName, userName, password);  
 	        
+	        //update picture
         	PreparedStatement pst2 = conn.prepareStatement("UPDATE form.login SET accountPicture=? WHERE id=?");
-        	pst2.setString(2,id);
-        	pst2.setString(1,pictureText);
+        	
+        	pst2.setString(2,id); // ID of user account
+        	pst2.setString(1,pictureText); // Text of the picture
         	pst2.execute();
 
 	

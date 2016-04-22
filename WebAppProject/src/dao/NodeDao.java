@@ -23,10 +23,8 @@ public class NodeDao {
 	 * @param pictureText 
 	 * @param choice1_id The id of the node connecting to choice1, this was for debugging purposes only and will be removed later
 	 * @param choice2_id The id of the node connecting to choice2, this was for debugging purposes only and will be removed later
-	 * @return True if the function was successful, otherwise false
 	 */
-    public static boolean validate(String text, String choice1, String choice2, int node_id, int user_id, int nodeChoice, String pictureText) {          
-        boolean status = true;  
+    public static void newNode(String text, String choice1, String choice2, int node_id, int user_id, int nodeChoice, String pictureText) {            
         Connection conn = null;  
         PreparedStatement pst = null;  
         ResultSet rs = null;  
@@ -42,7 +40,7 @@ public class NodeDao {
             Class.forName(driver).newInstance();  
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
-            
+            // Create new node
             pst = conn.prepareStatement("INSERT INTO form.ct_nodes (text, choice1_text, choice2_text, root_id, user_id, picture_string) VALUES (?, ?, ?, ?, ?, ?)");
             pst.setString(1, text);  
             pst.setString(2, choice1);
@@ -54,10 +52,23 @@ public class NodeDao {
             pst.execute();
             
             if(nodeChoice == 1){
+            	
+            	
+            	/* 
+            	 * where the parents id = the variable node_id
+            	 * Grab the parent node and store it as parent
+            	 * Grab the child node and store it as child
+            	 * where parent id = the child nodes root id
+            	 * and child id does not equal parent choice2_id
+            	 * set parent's choice 1 id to the child's id
+            	 */
             	PreparedStatement pst2 = conn.prepareStatement("UPDATE form.ct_nodes parent INNER JOIN form.ct_nodes child ON parent.id = child.root_id AND child.id <> parent.choice2_id SET parent.choice1_id = child.id WHERE parent.id = ?");
             	pst2.setInt(1, node_id);
             	pst2.execute();
             }else if (nodeChoice == 2){
+            	/*
+            	 * Do the same thing as above but with choice 1 and 2 swapped
+            	 */
             	PreparedStatement pst2 = conn.prepareStatement("UPDATE form.ct_nodes parent INNER JOIN form.ct_nodes child ON parent.id = child.root_id AND child.id <> parent.choice1_id SET parent.choice2_id = child.id WHERE parent.id = ?");
                 pst2.setInt(1, node_id);
                 pst2.execute();
@@ -88,7 +99,6 @@ public class NodeDao {
                 }  
             }  
         }  
-        return status;  
     }
 	/**
 	 * Connects to the database and retrieves a node by id from the nodes table.
@@ -102,7 +112,8 @@ public class NodeDao {
         PreparedStatement pst = null;  
         ResultSet rs = null; 
         String[] node = new String[9];
-  
+        
+        //Variables for connecting to database
         String url = "jdbc:mysql://localhost:3306/";  
         String dbName = "form";  
         String driver = "com.mysql.jdbc.Driver";  
@@ -113,48 +124,48 @@ public class NodeDao {
             Class.forName(driver).newInstance();  
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
-            
+            // Get all the useful informatio about the node
             pst = conn.prepareStatement("SELECT text, choice1_text, choice2_text, choice1_id, choice2_id, picture_string, numOfViews, isBlocked, user_id, votes FROM form.ct_nodes WHERE id = ?");
             pst.setInt(1, nodeid);
   
             rs = pst.executeQuery();
             rs.next();
-            node[0] = rs.getString(1);
-            node[1] = rs.getString(2);
-            node[2] = rs.getString(3);
-            node[3] = rs.getString(4);
-            node[4] = rs.getString(5);
-            node[5] = rs.getString(6);
+            node[0] = rs.getString(1); //text
+            node[1] = rs.getString(2); // choice1_text
+            node[2] = rs.getString(3); // choice2_text
+            node[3] = rs.getString(4); // choice1_id
+            node[4] = rs.getString(5); // choice2_id
+            node[5] = rs.getString(6); // picture_string
             
-            int numOfViews = rs.getInt(7);
-            if(rs.getInt(8) == 1){
+            int numOfViews = rs.getInt(7); // numOfViews
+            if(rs.getInt(8) == 1){ // if the node is blocked
             	node[0] = "This Story has be blocked by an Admin.";
             	node[1] = node[0];
             	node[2] = node[1];
             	node[5] = "";
             }
-            int temp = Integer.parseInt(rs.getString(9));
-            System.out.println(temp);
+            int temp = Integer.parseInt(rs.getString(9)); //user_id
+            
+            // Increase the number of views by one
             numOfViews += 1;
             node[6] = "" + numOfViews;
-            node[8] = rs.getString(10);
+            node[8] = rs.getString(10); //votes
             pst.close();
             
-            
+            // update number of views
             pst = conn.prepareStatement("UPDATE form.ct_nodes SET numOfViews = ? WHERE id = ?");
             pst.setInt(1, numOfViews);
             pst.setInt(2, nodeid);
             pst.execute();
             pst.close();
             
-            
+            // get the node creators username from their userid
             pst = conn.prepareStatement("SELECT user FROM login WHERE id = ?");
             pst.setInt(1,temp);
             rs.close();
             rs = pst.executeQuery();
             rs.next();
             node[7] = rs.getString(1);
-            //node[1] = rs.getString("choice1_text");
   
         } catch (Exception e) {  
             System.out.println(e);  
@@ -183,11 +194,14 @@ public class NodeDao {
         }
         return node;
     }
+    
+    /*
+     * Update db with vote
+     */
 	public static void vote(String vote,int nodeid) {
 		Connection conn = null;  
         PreparedStatement pst = null;  
         ResultSet rs = null; 
-        String[] node = new String[7];
   
         String url = "jdbc:mysql://localhost:3306/";  
         String dbName = "form";  
@@ -219,7 +233,6 @@ public class NodeDao {
 	             * Change amount of votes according to the vote method argument
 	             * then update the database
 	             */
-	            System.out.println(votes);
 	            if(vote.equals("up")){
  	            	votes++;
  	            }else{
@@ -260,11 +273,14 @@ public class NodeDao {
         }
 		
 	}
+	
+	/*
+	 * block the node
+	 */
 	public static void blockNode(int nodeid,boolean isBlocked) {
 		Connection conn = null;  
         PreparedStatement pst = null;  
         ResultSet rs = null; 
-        String[] node = new String[7];
         int isBlockedInt;
   
         String url = "jdbc:mysql://localhost:3306/";  
@@ -281,6 +297,7 @@ public class NodeDao {
             }else{
             	isBlockedInt = 0;
             }
+            // set the node to blocked
             pst = conn.prepareStatement("UPDATE form.ct_nodes SET isBlocked = ? WHERE id = ?");
             pst.setInt(1, isBlockedInt);
             pst.setInt(2, nodeid);
@@ -312,6 +329,9 @@ public class NodeDao {
         }
 		
 	}
+	/*
+	 * Edit the node
+	 */
 	public static void editNode(String nodeid, String pText, String choice1, String choice2, String pictureText) {
         Connection conn = null;  
         PreparedStatement pst = null;  
@@ -328,7 +348,7 @@ public class NodeDao {
             Class.forName(driver).newInstance();  
             conn = DriverManager.getConnection(url + dbName, userName, password);  
   
-            
+            //update all the information about the node
             pst = conn.prepareStatement("UPDATE form.ct_nodes SET text=?,choice1_text=?,choice2_text=?,picture_string=? WHERE id=?");
             pst.setString(1, pText);  
             pst.setString(2, choice1);

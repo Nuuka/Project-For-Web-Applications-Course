@@ -1,3 +1,5 @@
+<!-- If the user is an admin -->
+<!-- This shows the block that allows the admin to edit the node and block it -->
         <div style="width=100%;text-align:center;background-color:#e74c3c;padding-top:10px;padding-bottom:10px;">
         	<h2 style="border:0px;margin:0px;padding:0px;color:white;">Admin Tools</h2>
 	        <form action="ViewNodeServlet" method="post" name="adminTools">

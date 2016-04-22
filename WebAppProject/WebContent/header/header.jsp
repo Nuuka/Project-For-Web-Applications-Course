@@ -1,3 +1,8 @@
+
+
+
+
+<!-- This Div is the black overlay when the login appears-->
 <div id="black" onclick="hideLogin()" style="
 	position:fixed;
 	z-index: 2;
@@ -10,21 +15,30 @@
 	right: 0px;
 	opacity: 0.5;">&nbsp;
 </div>
+
+<!-- Div for the popup for login -->
 <div id="popUpBlock" style="z-index: 3;visibility: hidden;left:calc(50% - 175px);position: fixed;">
 	<%@include file="../includePages/login.jsp" %>
 </div>
+
+
 <script>
+	// Shows the black overlay and login block
 	function showLogin() {
 	    document.getElementById("black").style.visibility='visible';
 	    document.getElementById("popUpBlock").style.visibility='visible';
 	}
+	// Hide the black overlay and login block
 	function hideLogin() {
 		document.getElementById("black").style.visibility='hidden';
 	    document.getElementById("popUpBlock").style.visibility='hidden';
 	}
 </script>
 
+
 <%
+// If logged in as admin show the admin header
+// If normal user, show the normal header
 if(session.getAttribute("accType")!= null){
 	if(session.getAttribute("accType").equals("admin")){
 		out.println("<div id=\"headerAdmin\">");
@@ -36,8 +50,7 @@ if(session.getAttribute("accType")!= null){
 }
 
 %>
-
-    <!-- <form action="loginServlet" method="post"> -->
+		<!-- main header table -->
 	    <table width="70%" style="margin-left:15%;text-align:center" height="63px">  
 	    	<tr>
 	    		<td onclick="location.href = 'index.jsp';" width="10%" style="text-align:left">
@@ -45,11 +58,6 @@ if(session.getAttribute("accType")!= null){
 				</td>
 	    		<td class="option" width="10%" style="cursor:pointer" onclick="location.href = './NodeTreeServlet';">
 		    			Adventure
-		    			<!-- <div id="dropDownList">
-		    			<ul>
-		    				<li onclick="location.href = './NodeTreeServlet';">Community Adventure</li>
-		    				<li>Personal Adventure</li>
-	    				</ul>-->
 		    		</div>
     			</td>
     			<!-- <td class="option" width="10%" id="pop" style="cursor:pointer" onclick="location.href = './stats.jsp';">
@@ -70,7 +78,6 @@ if(session.getAttribute("accType")!= null){
 					}%>
 	        </tr>  
 	    </table> 
-    <!-- </form> -->
 </div>
 
 

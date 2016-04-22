@@ -1,3 +1,4 @@
+THIS IS NOT USED IN ANY PAGE! 
 <script>
 	//var c = document.getElementById("myCanvas");
 	//var ctx = c.getContext("2d");
