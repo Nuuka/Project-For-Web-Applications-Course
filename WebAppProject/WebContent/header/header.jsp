@@ -52,9 +52,9 @@ if(session.getAttribute("accType")!= null){
 	    				</ul>-->
 		    		</div>
     			</td>
-    			<td class="option" width="10%" id="pop" style="cursor:pointer" onclick="location.href = './stats.jsp';">
+    			<!-- <td class="option" width="10%" id="pop" style="cursor:pointer" onclick="location.href = './stats.jsp';">
 		    		Statistics
-    			</td>
+    			</td>-->
     			<td class="option" width="10%" id="stat" style="cursor:pointer" onclick="location.href = './about.jsp';">
 		    		About
     			</td>

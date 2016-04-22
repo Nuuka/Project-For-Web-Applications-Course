@@ -27,6 +27,5 @@ public class AccountServlet extends HttpServlet{
         session.setAttribute("pictureString", pictureText);
 		RequestDispatcher rd=request.getRequestDispatcher("account.jsp");    
         rd.forward(request,response);  
-       
 	}
 }

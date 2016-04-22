@@ -47,7 +47,7 @@ public class RegisterServlet extends HttpServlet{
         //If the validation is successful redirects to welcome, otherwise redirects to register
         if(RegisterDao.createAccount(username, password, firstName, lastName, email)){    
         	//System.out.println("YESSSSSSSSS");
-            RequestDispatcher rd=request.getRequestDispatcher("login.jsp");    
+            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
             rd.forward(request,response);    
         }    
         else{    

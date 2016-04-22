@@ -31,10 +31,12 @@
                     pass2.style.backgroundColor = matchColor;
                     message.style.color = matchColor;
                     message.innerHTML = "Passwords Match!"
+                    document.getElementById("submitButton").disabled = false;
                 }else{
                     pass2.style.backgroundColor = noMatchColor;
                     message.style.color = noMatchColor;
                     message.innerHTML = "Passwords Do Not Match!"
+                    document.getElementById("submitButton").disabled = true;
                 }
             } //end script
     </script>
@@ -50,27 +52,27 @@
             <div style="text-align:center;margin-right:auto;margin-left:auto;">
 	            <form action="RegisterServlet" method="post" style="margin-left:70px">
 	                <label for="userID" >First Name</label>
-	                <input type="text" name="firstName"><br/><br/>
+	                <input type="text" name="firstName" required><br/><br/>
 	 
 	                <label for="userID" >Last Name</label>
-	                <input type="text" name="lastName"><br/><br/>
+	                <input type="text" name="lastName" required><br/><br/>
 	 
 	                <label for="userID" >Email</label>
-	                <input type="text" name="email"><br/><br/>
+	                <input type="text" name="email" required><br/><br/>
 	 
 	                <label for="userID" >User ID</label>
-	                <input type="text" name="username"><br/>
+	                <input type="text" name="username" required><br/>
 	 
 	                <label for="password" style="margin-top: 1em">Password</label>
-	                <input type="password" name="userpass" id="pass1"><br/><br/>
+	                <input type="password" name="userpass" id="pass1" required><br/><br/>
 	 
 	                <label for="password2">Confirm Password</label>
 	                <!--Calls on javascript fuction to check if the passwords are a match-->
-	                <input type="password" name="ConfirmPassword" id="pass2" onkeyup="checkPass(); return false">
+	                <input type="password" name="ConfirmPassword" id="pass2" onkeyup="checkPass(); return false" required>
 	                <br />
 	                <span id="confirmMessage" class="confirmMessage" style="margin-left: 95px"></span><br/><br/>
 	 
-	                <input type="submit" value="Create Account" style="margin-left: 150px">
+	                <input id="submitButton" type="submit" value="Create Account" style="margin-left: 150px">
 	                <% if(session.getAttribute("createStatus") == "failed"){
 	                    out.println("<br /><span style=\"color:#e74c3c\">Account already in use!</span>");
 	                }

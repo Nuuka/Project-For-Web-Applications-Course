@@ -300,7 +300,7 @@
 					});
 				  };
 			</script>
-			<a href="ViewNodeServlet?nodeid=1" class="modernButton" style="width:152px">View Nodes </a>
+			<a href="ViewNodeServlet?nodeid=4" class="modernButton" style="width:80%;margin-left:auto;margin-right:auto;">Start the story!</a>
 		</div>
 		<%@include file="header/header.jsp" %>
 
